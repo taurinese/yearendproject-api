@@ -26,6 +26,7 @@ Route::get('/', function () {
 Route::inertia('/search', 'Search');
 Route::inertia('/news', 'News');
 Route::inertia('/contact', 'Contact');
+Route::inertia('/new', 'New');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

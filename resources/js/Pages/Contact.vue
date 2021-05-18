@@ -18,16 +18,16 @@
             </div>
         </div>
         <h2 class="col-span-2 row-span-1 text-xl text-white font-bold my-16">Formulaire de contact</h2>
-        <form class="col-span-2 row-span-1" action="">
+        <form class="col-span-2 row-span-1" action="" @submit.prevent="sendMail">
             <div class="flex flex-row justify-between mb-12">
-                <input class="w-4/12 rounded-lg focus:outline-none focus:ring-0 border-0 text-black" type="text" name="name" id="name" placeholder="Nom complet">
-                <input class="w-7/12 rounded-lg focus:outline-none focus:ring-0 border-0 text-black" type="email" name="email" id="email" placeholder="Adresse email">
+                <input class="w-4/12 rounded-lg focus:outline-none focus:ring-0 border-0 text-black" type="text" name="name" id="name" placeholder="Nom complet" v-model="form.name">
+                <input class="w-7/12 rounded-lg focus:outline-none focus:ring-0 border-0 text-black" type="email" name="email" id="email" placeholder="Adresse email" v-model="form.email">
             </div>
             <div class="w-full bg-white rounded-lg">
-                <input class="w-full border-b-2 border-black rounded-t-lg focus:outline-none focus:ring-0 border-0 text-black" type="text" name="subject" id="subject" placeholder="Objet du message">
-                <textarea class="w-full rounded-lg focus:outline-none focus:ring-0 border-0 text-black" type="text" name="body" id="body" placeholder="Corps du message"></textarea>
+                <input class="w-full border-b-2 border-black rounded-t-lg focus:outline-none focus:ring-0 border-0 text-black" type="text" name="subject" id="subject" placeholder="Objet du message" v-model="form.subject">
+                <textarea class="w-full rounded-lg focus:outline-none focus:ring-0 border-0 text-black" type="text" name="body" id="body" placeholder="Corps du message"  v-model="form.body"></textarea>
             </div>
-            <button class="bg-black text-white rounded-xl px-4 py-2 my-8" type="submit">Envoyer</button>
+            <button class="bg-black text-white rounded-xl px-4 py-2 my-8 focus:outline-none focus:ring-0 border-0" type="submit">Envoyer</button>
         </form>
     </div>
 </template>
@@ -38,6 +38,21 @@ import AppLayout from '../Layouts/AppLayout.vue'
         components: {
             AppLayout
         },
+        data() {
+            return {
+                form: {
+                    email: '',
+                    name:'',
+                    subject:'',
+                    body:''
+                }
+            }
+        },
+        methods: {
+            sendMail(){
+                console.log(this.form);
+            }
+        },
     }
     
 </script>
@@ -46,4 +61,16 @@ import AppLayout from '../Layouts/AppLayout.vue'
     /* input{
         border-radius:10px;
     } */
+    #email, #name{
+        background-size: 30px;
+        background-repeat: no-repeat;
+        background-position: 10px;
+        padding-left: 50px;
+    }
+    #email {
+        background-image: url("../../../public/img/letter.svg");
+    }
+    #name {
+        background-image: url("../../../public/img/user.svg");
+    }
 </style>
