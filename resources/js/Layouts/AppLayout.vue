@@ -125,23 +125,26 @@
         }
 
         .nav-opened-text{
-            display:none;
+            display:block;
             opacity: 0;
+            top:50%;
+            transform: translate(0%, -50%);
+            position:absolute;
+            margin-left:60px;
+
         }
 
         &:hover{
             transition: width 0.5s ease-in-out;
             width:300px;
+            
 
             .nav-opened-text{
-                display:inline-block;
-                position:absolute;
-                margin-left:25px;
+                display:block;
                 /* animation: 1s fadeInOpacity; */
                 transition: opacity 1s ease;
                 opacity:1;
-                top:50%;
-                transform: translate(0%, -50%);
+                
             }
 
             ul li:first-child{

@@ -25,7 +25,7 @@
             </div>
             <div class="w-full bg-white rounded-lg">
                 <input class="w-full border-b-2 border-black rounded-t-lg focus:outline-none focus:ring-0 border-0 text-black" type="text" name="subject" id="subject" placeholder="Objet du message">
-                <textarea class="w-full rounded-lg focus:outline-none focus:ring-0 border-0 text-gray-800" type="text" name="body" id="body">Corps du message</textarea>
+                <textarea class="w-full rounded-lg focus:outline-none focus:ring-0 border-0 text-black" type="text" name="body" id="body" placeholder="Corps du message"></textarea>
             </div>
             <button class="bg-black text-white rounded-xl px-4 py-2 my-8" type="submit">Envoyer</button>
         </form>

@@ -1,12 +1,12 @@
 <template>
     <div>
         <layout />
+        <div class="circles">
+            <div class="circle" id="circle-one"></div>
+            <div class="circle" id="circle-two"></div>
+            <div class="circle" id="circle-three"></div>
+        </div>
         <div class="welcome">
-            <div class="circles">
-                <div class="circle" id="circle-one"></div>
-                <div class="circle" id="circle-two"></div>
-                <div class="circle" id="circle-three"></div>
-            </div>
             <div class="welcome-content">
                 <h2>
                     Découvrez des milliers de musiques libres de droit.
@@ -25,15 +25,14 @@
 </template>
 
 <style lang="scss" scoped>
-    div.welcome {
-        width:calc(100vw - 80px);
-        height:100vh;
-        margin-left:80px;
-        .circles{
-            width:100%;
-            height:100%;
+    .circles{
+            width:100vw;
+            height:100vh;
+            top:0;
+            left:0;
             overflow:hidden;
-            position:relative;
+            position:fixed;
+            z-index:-1;
             .circle{
                 width:500px;
                 height:500px;
@@ -55,6 +54,10 @@
                 }
             }
         }
+    div.welcome {
+        width:calc(100vw - 80px);
+        height:100vh;
+        margin-left:80px;
         .welcome-content{
             position:absolute;
             top:50%;
