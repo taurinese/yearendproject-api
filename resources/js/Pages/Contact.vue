@@ -14,7 +14,10 @@
                 <p>01 42 41 97 76</p>
             </div>
             <div class="col-span-1 row-span-1">
-                <div id="map"></div>
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d2624.35245957368!2d2.3625182656748254!3d48.8705571292887!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1swebstart%20paris!5e0!3m2!1sfr!2sfr!4v1621329510848!5m2!1sfr!2sfr" 
+                    width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy">
+                </iframe>
             </div>
         </div>
         <h2 class="col-span-2 row-span-1 text-xl text-white font-bold my-16">Formulaire de contact</h2>

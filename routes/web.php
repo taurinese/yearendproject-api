@@ -27,6 +27,8 @@ Route::inertia('/search', 'Search');
 Route::inertia('/news', 'News');
 Route::inertia('/contact', 'Contact');
 Route::inertia('/new', 'New');
+Route::inertia('/library', 'Library');
+Route::inertia('/playlist', 'Playlist');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
