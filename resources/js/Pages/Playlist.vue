@@ -11,18 +11,18 @@
                     <div>
                         <img src="https://picsum.photos/640/400/?random" alt=""
                         class="rounded-full w-12 h-12 col-span-1 row-span-1 inline-block mr-4">
-                        <span>par utilisateur</span><span> - </span><span>34min</span>
+                        <span>par <a @click.prevent="" href="" class="hover:underline">utilisateur</a></span><span> - </span><span>34min</span>
                     </div>
                 </div>
             </div>
             <div class="flex flex-row items-center h-16">
-                <a href="">
+                <a @click.prevent="" href="">
                     <img :src="heart_icon_hovered == true ? full_heart : empty_heart" alt=""
                     class="w-8 h-8 mr-8 playlist-icons"
                     @mouseover="heart_icon_hovered = true"
                     @mouseleave="heart_icon_hovered = null">
                 </a>
-                <a href="">
+                <a @click.prevent="" href="">
                     <img :src="share_icon_hovered == true ? full_share : empty_share " alt=""
                     class="w-8 h-8 playlist-icons"
                     @mouseover="share_icon_hovered = true"
@@ -62,8 +62,10 @@
                 </div>
                 <div class="col-span-1 row-span-1 font-semibold text-gray-500 flex items-center justify-between">
                     <span>Discovery</span>
-                    <img src="img/heart.svg" alt=""
-                    class="w-6 h-6 mr-4 playlist-icons">
+                    <a @click.prevent="" href="">
+                        <img src="img/heart.svg" alt=""
+                        class="w-6 h-6 mr-4 playlist-icons">
+                    </a>
                 </div>
                 <div class="col-span-1 row-span-1 font-semibold text-gray-500 flex items-center">
                     05:01
@@ -83,8 +85,10 @@
                 </div>
                 <div class="col-span-1 row-span-1 font-semibold text-gray-500 flex items-center justify-between">
                     <span>Discovery</span>
-                    <img src="img/heart.svg" alt=""
-                    class="w-6 h-6 mr-4 playlist-icons">
+                    <a @click.prevent="" href="">
+                        <img src="img/heart.svg" alt=""
+                        class="w-6 h-6 mr-4 playlist-icons">
+                    </a>
                 </div>
                 <div class="col-span-1 row-span-1 font-semibold text-gray-500 flex items-center">
                     05:01
@@ -104,8 +108,10 @@
                 </div>
                 <div class="col-span-1 row-span-1 font-semibold text-gray-500 flex items-center justify-between">
                     <span>Discovery</span>
-                    <img src="img/heart.svg" alt=""
-                    class="w-6 h-6 mr-4 playlist-icons">
+                    <a @click.prevent="" href="">
+                        <img src="img/heart.svg" alt=""
+                        class="w-6 h-6 mr-4 playlist-icons">
+                    </a>
                 </div>
                 <div class="col-span-1 row-span-1 font-semibold text-gray-500 flex items-center">
                     05:01
