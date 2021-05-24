@@ -1,4 +1,5 @@
 <template>
+    <app-layout/>
     <breeze-validation-errors class="mb-4" />
 
     <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
@@ -6,14 +7,14 @@
     </div>
 
     <form @submit.prevent="submit">
-        <div>
-            <breeze-label for="email" value="Email" />
-            <breeze-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus autocomplete="username" />
+        <div class="flex flex-row justify-between items-center">
+            <breeze-label for="email" value="Adresse mail" />
+            <breeze-input id="email" type="email" class="mt-1 block w-2/3" v-model="form.email" required autofocus autocomplete="username" />
         </div>
 
-        <div class="mt-4">
-            <breeze-label for="password" value="Password" />
-            <breeze-input id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="current-password" />
+        <div class="mt-4 flex flex-row justify-between items-center">
+            <breeze-label for="password" value="Mot de passe" />
+            <breeze-input id="password" type="password" class="mt-1 block w-2/3" v-model="form.password" required autocomplete="current-password" />
         </div>
 
         <div class="block mt-4">
@@ -33,6 +34,23 @@
             </breeze-button>
         </div>
     </form>
+    <div class="mt-6">
+        <p class="text-center">ou connectez-vous à l'aide de votre compte</p>
+        <div class="flex flex-row justify-evenly items-center h-24 mt-6">
+            <a href="">
+                <img src="img/facebook.svg" alt=""
+                class="w-12 h-12">
+            </a>
+            <a href="">
+                <img src="img/google.svg" alt=""
+                class="w-12 h-12">
+            </a>
+            <a href="">
+                <img src="img/twitter.svg" alt=""
+                class="w-12 h-12">
+            </a>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -42,6 +60,7 @@
     import BreezeCheckbox from '@/Components/Checkbox'
     import BreezeLabel from '@/Components/Label'
     import BreezeValidationErrors from '@/Components/ValidationErrors'
+    import AppLayout from '../../Layouts/AppLayout.vue'
 
     export default {
         layout: BreezeGuestLayout,
@@ -51,7 +70,8 @@
             BreezeInput,
             BreezeCheckbox,
             BreezeLabel,
-            BreezeValidationErrors
+            BreezeValidationErrors,
+            AppLayout
         },
 
         props: {
@@ -85,3 +105,8 @@
         }
     }
 </script>
+<style lang="scss" scoped>
+    .bg-gray-100{
+        background-color:transparent !important;
+    }
+</style>
