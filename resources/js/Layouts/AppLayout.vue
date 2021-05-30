@@ -1,7 +1,7 @@
 <template>
     <layout>
         <div class="container">
-            <nav class="nav">
+            <nav class="nav hidden lg:block">
                 <ul>
                     <li>
                         <inertia-link href="/">

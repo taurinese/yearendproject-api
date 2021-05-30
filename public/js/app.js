@@ -18803,7 +18803,7 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("img", {
   src: "https://picsum.photos/640/400/?random",
   alt: "Placeholder",
-  "class": "rounded-xl object-cover h-48 w-full"
+  "class": "rounded-lg object-cover h-48 w-full"
 })])], -1
 /* HOISTED */
 );
@@ -18975,10 +18975,10 @@ var _withId = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.withScopeId)("dat
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-6a1ec2cd");
 
 var _hoisted_1 = {
-  "class": "w-48 mr-auto"
+  "class": "xl:w-44 lg:w-40 md:w-40 sm:w-32 w-20"
 };
 
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"song-card overflow-y-hidden relative grid grid-cols-1 grid-flow-row w-48\" data-v-6a1ec2cd><a href=\"/playlist\" data-v-6a1ec2cd><img src=\"https://picsum.photos/640/400/?random\" alt=\"\" class=\"playlist-cover rounded-xl w-full h-48 col-span-1 row-span-1\" data-v-6a1ec2cd><span class=\"text-white col-span-1 row-span-1\" data-v-6a1ec2cd>Discovery</span><br data-v-6a1ec2cd><span class=\"text-gray-500 col-span-1 row-span-1\" data-v-6a1ec2cd>par Daft Punk</span></a></div>", 1);
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"song-card overflow-y-hidden relative grid grid-cols-1 grid-flow-row w-full\" data-v-6a1ec2cd><a href=\"/playlist\" data-v-6a1ec2cd><img src=\"https://picsum.photos/640/400/?random\" alt=\"\" class=\"playlist-cover rounded-xl w-full xl:h-44 lg:h-40 md:h-40 sm:h-32 h-20 col-span-1 row-span-1\" data-v-6a1ec2cd><span class=\"text-white col-span-1 row-span-1\" data-v-6a1ec2cd>Discovery</span><br data-v-6a1ec2cd><span class=\"text-gray-500 col-span-1 row-span-1\" data-v-6a1ec2cd>par Daft Punk</span></a></div>", 1);
 
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
 
@@ -19161,7 +19161,7 @@ var _hoisted_1 = {
   "class": "container"
 };
 var _hoisted_2 = {
-  "class": "nav"
+  "class": "nav hidden lg:block"
 };
 
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("img", {
@@ -20493,27 +20493,27 @@ var _withId = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.withScopeId)("dat
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-79b8b0bc");
 
 var _hoisted_1 = {
-  "class": "px-48 text-white"
+  "class": "px-8 sm:px-12 lg:px-32 xl:px-36 text-white"
 };
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", {
   "class": "text-xl text-white font-bold mt-16 mb-8"
-}, "Bibliothèque", -1
+}, "Playlists", -1
 /* HOISTED */
 );
 
 var _hoisted_3 = {
-  "class": "grid grid-cols-4 grid-flow-row gap-y-8"
+  "class": "grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-4 grid-cols-3 grid-flow-row gap-y-8"
 };
 
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", {
   "class": "text-xl text-white font-bold mt-16 mb-8"
-}, "Bibliothèque", -1
+}, "Suggestions", -1
 /* HOISTED */
 );
 
 var _hoisted_5 = {
-  "class": "grid grid-cols-4 grid-flow-row gap-y-8 mb-16"
+  "class": "grid grid-cols-6 grid-flow-row gap-y-8 mb-16"
 };
 
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
