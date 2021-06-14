@@ -12,6 +12,29 @@
 
 namespace App\Models{
 /**
+ * App\Models\Plan
+ *
+ * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string $name
+ * @property int $price
+ * @property string $stripe_id
+ * @method static \Illuminate\Database\Eloquent\Builder|Plan newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Plan newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Plan query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Plan whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Plan whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Plan whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Plan wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Plan whereStripeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Plan whereUpdatedAt($value)
+ */
+	class Plan extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\User
  *
  * @property int $id

@@ -88,16 +88,13 @@
         <p class="text-center">ou inscrivez-vous à l'aide de votre compte</p>
         <div class="flex flex-row justify-evenly items-center h-24 mt-6">
             <a href="">
-                <img src="img/facebook.svg" alt=""
-                class="w-12 h-12">
+                <img src="img/facebook.svg" alt="" class="w-12 h-12" />
             </a>
             <a href="">
-                <img src="img/google.svg" alt=""
-                class="w-12 h-12">
+                <img src="img/google.svg" alt="" class="w-12 h-12" />
             </a>
             <a href="">
-                <img src="img/twitter.svg" alt=""
-                class="w-12 h-12">
+                <img src="img/twitter.svg" alt="" class="w-12 h-12" />
             </a>
         </div>
     </div>
@@ -132,8 +129,6 @@ export default {
                 name: "",
                 email: "",
                 password: "",
-                password_confirmation: "",
-                terms: false,
                 username: "",
             }),
         };
@@ -142,8 +137,7 @@ export default {
     methods: {
         submit() {
             this.form.post(this.route("register"), {
-                onFinish: () =>
-                    this.form.reset("password", "password_confirmation"),
+                onFinish: () => this.form.reset("password"),
             });
         },
     },

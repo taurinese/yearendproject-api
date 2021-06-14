@@ -1,34 +1,36 @@
-const defaultTheme = require('tailwindcss/defaultTheme');
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
     purge: [
-        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
-        './storage/framework/views/*.php',
-        './resources/views/**/*.blade.php',
-        './resources/js/**/*.vue',
+        "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
+        "./storage/framework/views/*.php",
+        "./resources/views/**/*.blade.php",
+        "./resources/js/**/*.vue",
     ],
 
     theme: {
-        backgroundColor: theme => ({
-            ...theme('colors'),
-            'primary': '#15202B',
+        backgroundColor: (theme) => ({
+            ...theme("colors"),
+            primary: "#15202B",
         }),
         extend: {
             fontFamily: {
-                sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+                sans: ["Nunito", ...defaultTheme.fontFamily.sans],
+            },
+            colors: {
+                "blue-primary": "#15202B",
             },
         },
     },
 
     variants: {
         extend: {
-            opacity: ['disabled'],
+            opacity: ["disabled"],
         },
     },
 
-
-    plugins: [require('@tailwindcss/forms')],
+    plugins: [require("@tailwindcss/forms")],
     output: {
-        chunkFilename: 'js/[name].js?id=[chunkhash]',
-      }
+        chunkFilename: "js/[name].js?id=[chunkhash]",
+    },
 };
