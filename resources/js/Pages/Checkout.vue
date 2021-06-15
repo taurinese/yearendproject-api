@@ -1,6 +1,10 @@
 <template>
     <div class="px-48 mt-12">
         <app-layout />
+        <inertia-link href="/checkout2"
+            >bla bla bla bla bal bal bal bal bal bal blblzb lblalb la lbalb alb
+            alb albalb al</inertia-link
+        >
         <!-- <form class="text-white">
             <div class="mt-4 flex flex-col justify-between items-center">
                 <div v-for="plan in plans" :key="plan">
@@ -32,11 +36,7 @@
                 />
             </div>
         </form> -->
-        <stripe-element-card
-            ref="elementRef"
-            :pk="pulishableKey"
-            @token="tokenCreated"
-        />
+
         <button
             @click="submit"
             id="checkout-button"
@@ -63,14 +63,12 @@
 
 <script>
 import AppLayout from "../Layouts/AppLayout.vue";
-import { StripeElementCard } from "@vue-stripe/vue-stripe";
 
 export default {
     name: "Checkout",
-    components: { AppLayout, StripeElementCard },
+    components: { AppLayout },
     props: ["plans"],
     data() {
-        this.pulishableKey = process.env.VUE_APP_STRIPE_PUBLISHABLE_KEY;
         return {
             name: "",
             radio: "",
@@ -91,10 +89,6 @@ export default {
             console.log(token);
             // handle the token
             // send it to your server
-        },
-        submit() {
-            // this will trigger the process
-            this.$refs.elementRef.submit();
         },
     },
 };

@@ -31,7 +31,6 @@
     "dependencies": {
         "@inertiajs/inertia": "^0.8.7",
         "@inertiajs/inertia-vue3": "^0.3.14",
-        "@inertiajs/progress": "^0.2.4",
-        "@vue-stripe/vue-stripe": "^4.2.5"
+        "@inertiajs/progress": "^0.2.4"
     }
 }

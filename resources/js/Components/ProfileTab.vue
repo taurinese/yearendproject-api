@@ -15,6 +15,7 @@
                 name="first_name"
                 id="first_name"
                 type="text"
+                :value="user.name"
             />
             <button
                 class="
@@ -31,7 +32,7 @@
             </button>
         </div>
         <div class="flex justify-evenly w-full p-4">
-            <label class="text-xl w-1/5 text-left" for="first_name">Nom</label>
+            <label class="text-xl w-1/5 text-left" for="last_name">Nom</label>
             <input
                 class="
                     w-2/3
@@ -43,6 +44,7 @@
                 name="last_name"
                 id="last_name"
                 type="text"
+                :value="user.name"
             />
             <button
                 class="
@@ -59,7 +61,7 @@
             </button>
         </div>
         <div class="flex justify-evenly w-full p-4">
-            <label class="text-xl w-1/5 text-left" for="first_name"
+            <label class="text-xl w-1/5 text-left" for="email"
                 >Adresse mail</label
             >
             <input
@@ -73,6 +75,7 @@
                 name="email"
                 id="email"
                 type="email"
+                :value="user.email"
             />
             <button
                 class="
@@ -89,7 +92,7 @@
             </button>
         </div>
         <div class="flex justify-evenly w-full p-4">
-            <label class="text-xl w-1/5 text-left" for="first_name"
+            <label class="text-xl w-1/5 text-left" for="username"
                 >Nom d'utilisateur</label
             >
             <input
@@ -103,6 +106,7 @@
                 name="username"
                 id="username"
                 type="text"
+                :value="user.username"
             />
             <button
                 class="
@@ -119,9 +123,7 @@
             </button>
         </div>
         <div class="flex justify-evenly w-full p-4">
-            <label class="text-xl w-1/5 text-left" for="first_name"
-                >Avatar</label
-            >
+            <label class="text-xl w-1/5 text-left" for="avatar">Avatar</label>
             <input
                 class="
                     w-2/3
@@ -130,11 +132,14 @@
                     focus:ring-0
                     p-0
                 "
-                name="username"
-                id="username"
+                @input="avatar = $event.target.files[0]"
+                @change="onFileChange"
+                name="avatar"
+                id="avatar"
                 type="file"
             />
             <button
+                @click.prevent="uploadImg"
                 class="
                     bg-blue-primary
                     text-white
@@ -143,6 +148,37 @@
                     focus:ring-0
                     border-0
                     px-4
+                "
+            >
+                Ajouter
+            </button>
+        </div>
+        <div class="flex justify-evenly w-full p-4">
+            <label class="text-xl w-1/5 text-left" for="first_name"
+                >Aperçu</label
+            >
+            <div class="w-2/3">
+                <img
+                    v-if="url"
+                    :src="url"
+                    :alt="avatar.name"
+                    width="200"
+                    height="200"
+                    class="rounded-lg"
+                />
+                <p v-else>Aucune image sélectionnée...</p>
+            </div>
+            <button
+                @click.prevent="uploadImg"
+                class="
+                    bg-blue-primary
+                    text-white
+                    rounded-xl
+                    focus:outline-none
+                    focus:ring-0
+                    border-0
+                    px-4
+                    invisible
                 "
             >
                 Ajouter
@@ -166,6 +202,7 @@
                     p-2
                     text-gray-500
                     hover:text-gray-800
+                    cursor-not-allowed
                 "
             >
                 Se déconnecter de tous les appareils
@@ -175,7 +212,39 @@
 </template>
 
 <script>
-export default {};
+import { useForm, usePage } from "@inertiajs/inertia-vue3";
+import { computed } from "vue";
+export default {
+    setup() {
+        const user = computed(() => usePage().props.value.auth.user);
+        return { user };
+    },
+    data() {
+        return {
+            avatar: null,
+            url: null,
+        };
+    },
+    methods: {
+        uploadImg() {
+            console.log(this.avatar);
+            const form = useForm({
+                avatar: this.avatar,
+            });
+            form.post("/upload/avatar");
+        },
+        onFileChange() {
+            console.log("change");
+            this.url = URL.createObjectURL(this.avatar);
+        },
+    },
+};
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+#avatar {
+    &::-webkit-file-upload-button {
+        visibility: hidden;
+    }
+}
+</style>

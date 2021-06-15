@@ -1,71 +1,112 @@
 <template>
-    <div>
-        <form class="uk-padding">
-            <div class="uk-margin uk-text-center">
+    <div class="flex justify-center items-center h-full w-full">
+        <form class="w-2/3">
+            <div>
                 <p class="stripeError" v-if="stripeError">
                     {{ stripeError }}
                 </p>
             </div>
-            <div class="uk-margin uk-text-left">
-                <label class="uk-form-label" for="Card Number">
+            <div class="card-input">
+                <label for="Card Number" class="text-sm text-gray-800">
                     Card Number
                 </label>
-                <div class="uk-form-controls">
+                <div>
                     <div
                         id="card-number"
-                        class="uk-input"
                         :class="{ 'uk-form-danger': cardNumberError }"
+                        class="border-b border-blue-primary text-white"
                     ></div>
-                    <span class="help-block" v-if="cardNumberError">
+                    <div
+                        class="
+                            help-block
+                            text-red-700
+                            bg-red-100
+                            px-6
+                            py-2
+                            border-0
+                            rounded
+                            mt-2
+                            border-red-500 border
+                        "
+                        v-if="cardNumberError"
+                    >
                         {{ cardNumberError }}
-                    </span>
+                    </div>
                 </div>
             </div>
-            <div class="uk-grid-small uk-text-left" uk-grid>
-                <div class="uk-width-1-2@s">
-                    <label class="uk-form-label" for="Card CVC">
+            <div>
+                <div class="card-input">
+                    <label for="Card CVC" class="text-sm text-gray-800">
                         Card CVC
                     </label>
-                    <div class="uk-form-controls">
+                    <div>
                         <div
                             id="card-cvc"
-                            class="uk-input"
                             :class="{ 'uk-form-danger': cardCvcError }"
+                            class="border-b border-blue-primary"
                         ></div>
-                        <span class="help-block" v-if="cardCvcError">
+                        <div
+                            class="
+                                help-block
+                                text-red-700
+                                bg-red-100
+                                px-6
+                                py-2
+                                border-0
+                                rounded
+                                mb-2
+                                mt-2
+                                border-red-500 border
+                            "
+                            v-if="cardCvcError"
+                        >
                             {{ cardCvcError }}
-                        </span>
+                        </div>
                     </div>
                 </div>
-                <div class="uk-width-1-2@s">
-                    <label class="uk-form-label" for="Expiry Month">
+                <div class="card-input">
+                    <label for="Expiry Month" class="text-sm text-gray-800">
                         Expiry
                     </label>
-                    <div class="uk-form-controls">
+                    <div>
                         <div
                             id="card-expiry"
-                            class="uk-input"
                             :class="{ 'uk-form-danger': cardExpiryError }"
+                            class="border-b border-blue-primary"
                         ></div>
-                        <span class="help-block" v-if="cardExpiryError">
+                        <div
+                            class="
+                                help-block
+                                text-red-700
+                                bg-red-100
+                                px-6
+                                py-2
+                                border-0
+                                rounded
+                                mb-2
+                                mt-2
+                                border-red-500 border
+                            "
+                            v-if="cardExpiryError"
+                        >
                             {{ cardExpiryError }}
-                        </span>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="uk-margin uk-margin-remove-bottom uk-text-right">
+            <div class="flex justify-between items-center">
                 <button
-                    class="uk-button uk-button-small uk-button-default"
+                    class="bg-blue-primary px-4 py-2 mt-4 rounded-lg text-white"
                     @click.prevent="reset()"
                 >
                     Reset
                 </button>
                 <button
-                    class="uk-button uk-button-small uk-button-primary"
+                    class="bg-blue-primary px-4 py-2 mt-4 rounded-lg text-white"
                     @click.prevent="submitFormToCreateToken()"
                 >
                     <span v-if="loading">processing...</span>
-                    <span v-if="!loading">Donate $1200</span>
+                    <span v-if="!loading">Pay</span>
                 </button>
             </div>
         </form>
@@ -192,3 +233,13 @@ export default {
     },
 };
 </script>
+<style lang="scss" scoped>
+.card-input {
+    // display: flex;
+}
+.InputContainer .InputElement {
+    &::placeholder {
+        color: white !important;
+    }
+}
+</style>

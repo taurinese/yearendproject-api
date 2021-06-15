@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -30,13 +31,17 @@ Route::inertia('/contact', 'Contact');
 Route::inertia('/new', 'New');
 Route::inertia('/library', 'Library');
 Route::inertia('/playlist', 'Playlist');
-Route::inertia('/account', 'Account');
 Route::inertia('/checkout2', 'Checkout2');
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
 Route::post('/checkout', [CheckoutController::class, 'store']);
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::post('/upload/avatar', [ProfileController::class, 'updateAvatar']);
+
+
+Route::middleware('auth')->group(function () {
+    Route::inertia('/account', 'Account');
+});
+
+
 
 require __DIR__ . '/auth.php';
