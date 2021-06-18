@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -42,6 +44,11 @@ Route::middleware('auth')->group(function () {
     Route::inertia('/account', 'Account');
 });
 
+Route::inertia('/admin/', 'Admin/Dashboard');
+Route::get('/admin/users', [AdminController::class, 'userDashboard']);
+Route::get('/admin/posts', [AdminController::class, 'newsDashboard']);
+Route::delete('/admin/posts/delete', [PostController::class, 'delete']);
+Route::post('/admin/posts/create', [PostController::class, 'store']);
 
 
 require __DIR__ . '/auth.php';
