@@ -20,7 +20,7 @@ class CreatePostsTable extends Migration
             $table->string('body');
             $table->string('url_image');
             $table->string('cloudinary_id');
-            $table->timestamp('published_at');
+            $table->date('published_at');
             $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->boolean('active');
         });

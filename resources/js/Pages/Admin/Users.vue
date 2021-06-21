@@ -429,7 +429,7 @@ export default {
     },
     data() {
         return {
-            showForm: true,
+            showForm: false,
             currentDate: new Date(Date.now()).toISOString().split("T")[0],
             form: {
                 title: "",

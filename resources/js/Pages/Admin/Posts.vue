@@ -205,8 +205,6 @@
                                 uppercase
                                 border border-blue
                                 cursor-pointer
-                                hover:bg-blue
-                                hover:text-white
                             "
                         >
                             <svg
@@ -380,14 +378,47 @@
                         v-for="post in posts"
                         :key="post"
                     >
-                        <td class="px-3 py-4">
+                        <td class="px-3 py-4 text-center">
                             {{ post.title }}
                         </td>
-                        <td class="px-3 py-4 text-center">{{ post.body }}</td>
+                        <td
+                            v-if="post.body.length > 20"
+                            class="px-3 py-4 text-center"
+                        >
+                            {{ post.body.substring(0, 20) + "..." }}
+                        </td>
+                        <td v-else class="px-3 py-4 text-center">
+                            {{ post.body }}
+                        </td>
                         <td class="px-3 py-4 text-center">
                             {{ post.published_at }}
                         </td>
-                        <td class="px-3 py-4 text-center">{{ post.active }}</td>
+                        <td class="px-3 py-4 text-center">
+                            <span
+                                v-if="post.active"
+                                class="
+                                    bg-green-200
+                                    text-green-600
+                                    py-1
+                                    px-3
+                                    rounded-full
+                                    text-xs
+                                "
+                                >Oui</span
+                            >
+                            <span
+                                v-else
+                                class="
+                                    bg-red-200
+                                    text-red-600
+                                    py-1
+                                    px-3
+                                    rounded-full
+                                    text-xs
+                                "
+                                >Non</span
+                            >
+                        </td>
                         <td class="px-3 py-4">
                             <div class="flex item-center justify-center">
                                 <div
@@ -399,6 +430,7 @@
                                         hover:scale-110
                                         cursor-pointer
                                     "
+                                    @click="editPost(post.id)"
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -488,6 +520,12 @@ export default {
             });
             form.delete("/admin/posts/delete");
         },
+        editPost(id) {
+            const form = useForm({
+                id: id,
+            });
+            form.post("/admin/posts/edit");
+        },
     },
     mounted() {
         console.log(this.currentDate);
@@ -498,8 +536,6 @@ export default {
 <style lang="scss" scoped>
 .big-btn {
     &:hover {
-        #add-icon {
-        }
         #refresh-icon {
             // transition: transform 1s;
             // transform-origin: center;

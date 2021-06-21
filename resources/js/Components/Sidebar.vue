@@ -94,72 +94,69 @@
                     <span>Abonnements</span>
                 </li>
             </inertia-link>
-            <inertia-link href="">
-                <li
-                    class="
-                        my-2
-                        py-2
-                        px-12
-                        hover:bg-indigo-700
-                        hover:text-white
-                        text-xl
-                        flex
-                        justify-start
-                        items-baseline
-                    "
-                >
-                    <img
-                        class="w-4 mr-2 sidebar-icons"
-                        src="/img/chanteur.svg"
-                        alt="dashboard"
-                    />
-                    <span>Artistes</span>
-                </li>
-            </inertia-link>
-            <inertia-link href="">
-                <li
-                    class="
-                        my-2
-                        py-2
-                        px-12
-                        hover:bg-indigo-700
-                        hover:text-white
-                        text-xl
-                        flex
-                        justify-start
-                        items-baseline
-                    "
-                >
-                    <img
-                        class="w-4 mr-2 sidebar-icons"
-                        src="/img/album.svg"
-                        alt="dashboard"
-                    />
-                    <span>Albums</span>
-                </li>
-            </inertia-link>
-            <inertia-link href="">
-                <li
-                    class="
-                        my-2
-                        py-2
-                        px-12
-                        hover:bg-indigo-700
-                        hover:text-white
-                        text-xl
-                        flex
-                        justify-start
-                        items-baseline
-                    "
-                >
-                    <img
-                        class="w-4 mr-2 sidebar-icons"
-                        src="/img/chanson.svg"
-                        alt="dashboard"
-                    />
-                    <span>Chansons</span>
-                </li>
-            </inertia-link>
+            <li
+                class="
+                    my-2
+                    py-2
+                    px-12
+                    hover:bg-indigo-700
+                    hover:text-white
+                    text-xl
+                    flex
+                    justify-start
+                    items-baseline
+                    cursor-not-allowed
+                "
+            >
+                <img
+                    class="w-4 mr-2 sidebar-icons"
+                    src="/img/chanteur.svg"
+                    alt="dashboard"
+                />
+                <span>Artistes</span>
+            </li>
+            <li
+                class="
+                    my-2
+                    py-2
+                    px-12
+                    hover:bg-indigo-700
+                    hover:text-white
+                    text-xl
+                    flex
+                    justify-start
+                    items-baseline
+                    cursor-not-allowed
+                "
+            >
+                <img
+                    class="w-4 mr-2 sidebar-icons"
+                    src="/img/album.svg"
+                    alt="dashboard"
+                />
+                <span>Albums</span>
+            </li>
+            <li
+                class="
+                    my-2
+                    py-2
+                    px-12
+                    hover:bg-indigo-700
+                    hover:text-white
+                    text-xl
+                    flex
+                    justify-start
+                    items-baseline
+                    cursor-not-allowed
+                "
+            >
+                <img
+                    class="w-4 mr-2 sidebar-icons"
+                    src="/img/chanson.svg"
+                    alt="dashboard"
+                />
+                <span>Chansons</span>
+            </li>
         </ul>
     </div>
 </template>

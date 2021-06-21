@@ -49,6 +49,8 @@ Route::get('/admin/users', [AdminController::class, 'userDashboard']);
 Route::get('/admin/posts', [AdminController::class, 'newsDashboard']);
 Route::delete('/admin/posts/delete', [PostController::class, 'delete']);
 Route::post('/admin/posts/create', [PostController::class, 'store']);
+Route::post('/admin/posts/edit', [PostController::class, 'edit']);
+Route::post('/admin/posts/update', [PostController::class, 'update']);
 
 
 require __DIR__ . '/auth.php';
