@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Plan;
+use Auth;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
 use Redirect;
 
 class CheckoutController extends Controller
@@ -12,7 +12,7 @@ class CheckoutController extends Controller
     public function index()
     {
         $plans = Plan::get();
-        return Inertia::render('Checkout', ['plans' => $plans]);
+        return $plans;
     }
 
     public function store(Request $request)
@@ -23,5 +23,32 @@ class CheckoutController extends Controller
         ]);
         dd($request->all());
         return Redirect::route('checkout');
+    }
+
+    public function createIntent()
+    {
+        return Auth::user()->createSetupIntent();
+    }
+
+    public function subscribe(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'payment_method' => 'required',
+            'plan' => 'required|exists:plans,id',
+            'coupon' => 'nullable'
+        ]);
+
+        $plan = Plan::find($request->plan);
+
+        try {
+            $subscription = $request->user()
+                ->newSubscription($plan->name, $plan->stripe_id)
+                ->withCoupon($request->coupon)
+                ->create($request->payment_method);
+            return response()->json($subscription);
+        } catch (\Laravel\Cashier\Exceptions\IncompletePayment $e) {
+            return response()->json($e->payment);
+        }
     }
 }

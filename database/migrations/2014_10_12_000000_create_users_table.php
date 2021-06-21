@@ -22,6 +22,9 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->string('url_image')->default('https://res.cloudinary.com/hyi9bajzn/image/upload/v1624269240/avatar_2_x2jw2c.png');
+            $table->string('cloudinary_id')->default('');
+            $table->boolean('isAdmin')->default(0);
         });
     }
 

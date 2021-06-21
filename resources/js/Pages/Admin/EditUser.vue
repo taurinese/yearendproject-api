@@ -14,9 +14,9 @@
                 <div class="w-2/5">
                     <label
                         class="block text-gray-700 text-sm font-normal mb-2"
-                        for="username"
+                        for="name"
                     >
-                        Titre
+                        Nom
                     </label>
                     <input
                         class="
@@ -32,12 +32,12 @@
                             focus:outline-none
                             focus:shadow-outline
                         "
-                        name="title"
-                        v-model="form.title"
+                        name="name"
+                        v-model="form.name"
                         type="text"
                         required
                         autofocus
-                        placeholder="Titre"
+                        placeholder="Name"
                     />
                 </div>
                 <div class="w-2/5">
@@ -45,7 +45,7 @@
                         class="block text-gray-700 text-sm font-normal mb-2"
                         for="username"
                     >
-                        Date de publication
+                        Username
                     </label>
                     <input
                         class="
@@ -61,97 +61,18 @@
                             focus:outline-none
                             focus:shadow-outline
                         "
-                        name="published_at"
-                        v-model="form.published_at"
-                        type="date"
-                        :min="minDate"
-                        required
-                    />
-                </div>
-                <div class="w-full my-4">
-                    <label
-                        class="block text-gray-700 text-sm font-normal mb-2"
-                        for="username"
-                    >
-                        Body
-                    </label>
-                    <input
-                        class="
-                            shadow
-                            appearance-none
-                            border
-                            rounded
-                            w-full
-                            py-2
-                            px-3
-                            text-gray-700
-                            leading-tight
-                            focus:outline-none
-                            focus:shadow-outline
-                        "
-                        name="body"
-                        v-model="form.body"
+                        name="username"
+                        v-model="form.username"
                         type="text"
                         required
-                        placeholder="Body"
                     />
                 </div>
-                <div class="w-2/5">
-                    <label
-                        class="
-                            w-full
-                            flex flex-col
-                            items-center
-                            px-4
-                            py-6
-                            bg-white
-                            text-blue
-                            rounded-lg
-                            shadow-lg
-                            tracking-wide
-                            uppercase
-                            border border-blue
-                            cursor-pointer
-                        "
-                    >
-                        <svg
-                            class="w-8 h-8"
-                            fill="currentColor"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 20 20"
-                            v-if="!form.url_image"
-                        >
-                            <path
-                                d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"
-                            />
-                        </svg>
-                        <img
-                            v-else
-                            class="w-8 h-8"
-                            src="/img/checked.svg"
-                            alt="file uploaded"
-                        />
-                        <span
-                            class="mt-2 text-base leading-normal"
-                            v-if="!form.url_image"
-                            >Select a file</span
-                        >
-                        <span class="mt-2 text-base leading-normal" v-else
-                            >File uploaded</span
-                        >
-                        <input
-                            type="file"
-                            class="hidden"
-                            @input="form.url_image = $event.target.files[0]"
-                        />
-                    </label>
-                </div>
-                <div class="w-2/5">
+                <div class="w-2/5 my-4">
                     <label
                         class="block text-gray-700 text-sm font-normal mb-2"
-                        for="active"
+                        for="email"
                     >
-                        Publié
+                        Email
                     </label>
                     <input
                         class="
@@ -159,14 +80,18 @@
                             appearance-none
                             border
                             rounded
+                            w-full
+                            py-2
+                            px-3
                             text-gray-700
                             leading-tight
                             focus:outline-none
                             focus:shadow-outline
                         "
-                        name="active"
-                        v-model="form.active"
-                        type="checkbox"
+                        name="email"
+                        v-model="form.email"
+                        type="email"
+                        required
                     />
                 </div>
             </div>
@@ -230,40 +155,31 @@ export default {
     setup() {
         return {};
     },
-    props: ["post"],
+    props: ["user"],
     data() {
         return {
-            minDate: new Date(this.post.published_at)
-                .toISOString()
-                .split("T")[0],
             form: this.$inertia.form({
-                title: "",
-                body: "",
-                url_image: "",
-                published_at: "",
-                active: true,
+                name: "",
+                username: "",
+                email: "",
             }),
         };
     },
     mounted() {
-        this.form.title = this.post.title;
-        this.form.body = this.post.body;
-        this.form.url_image = this.post.url_image;
-        this.form.published_at = this.post.published_at;
-        this.form.active = this.post.active;
+        this.form.name = this.user.name;
+        this.form.username = this.user.username;
+        this.form.email = this.user.email;
     },
     methods: {
         updatePost() {
             const form = useForm({
-                id: this.post.id,
-                title: this.form.title,
-                body: this.form.body,
-                url_image: this.form.url_image,
-                published_at: this.form.published_at,
-                active: this.form.active,
+                id: this.user.id,
+                name: this.form.name,
+                username: this.form.username,
+                email: this.form.email,
             });
             console.log(this.form);
-            form.post("/admin/posts/update");
+            form.post("/admin/users/update");
         },
     },
 };

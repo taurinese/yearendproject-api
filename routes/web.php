@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
@@ -34,23 +35,31 @@ Route::inertia('/new', 'New');
 Route::inertia('/library', 'Library');
 Route::inertia('/playlist', 'Playlist');
 Route::inertia('/checkout2', 'Checkout2');
-Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
-Route::post('/checkout', [CheckoutController::class, 'store']);
 
 Route::post('/upload/avatar', [ProfileController::class, 'updateAvatar']);
 
 
 Route::middleware('auth')->group(function () {
     Route::inertia('/account', 'Account');
+    Route::get('/stripe', [CheckoutController::class, 'index'])->name('checkout');
+    Route::post('/checkout', [CheckoutController::class, 'store']);
+    Route::post('/stripe/intent', [CheckoutController::class, 'createIntent']);
+    Route::post('/stripe/subscribe', [CheckoutController::class, 'subscribe']);
 });
 
-Route::inertia('/admin/', 'Admin/Dashboard');
-Route::get('/admin/users', [AdminController::class, 'userDashboard']);
-Route::get('/admin/posts', [AdminController::class, 'newsDashboard']);
-Route::delete('/admin/posts/delete', [PostController::class, 'delete']);
-Route::post('/admin/posts/create', [PostController::class, 'store']);
-Route::post('/admin/posts/edit', [PostController::class, 'edit']);
-Route::post('/admin/posts/update', [PostController::class, 'update']);
+Route::middleware('authadmin')->group(function () {
+    Route::inertia('/admin/', 'Admin/Dashboard');
+    Route::get('/admin/users', [AdminController::class, 'userDashboard']);
+    Route::get('/admin/posts', [AdminController::class, 'newsDashboard']);
+    Route::delete('/admin/posts/delete', [PostController::class, 'delete']);
+    Route::post('/admin/posts/create', [PostController::class, 'store']);
+    Route::post('/admin/posts/edit', [PostController::class, 'edit']);
+    Route::post('/admin/posts/update', [PostController::class, 'update']);
+    Route::post('/admin/users/update', [RegisteredUserController::class, 'update']);
+    Route::post('/admin/users/edit', [RegisteredUserController::class, 'edit']);
+    Route::delete('/admin/users/delete', [RegisteredUserController::class, 'destroy']);
+});
+
 
 
 require __DIR__ . '/auth.php';

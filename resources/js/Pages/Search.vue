@@ -1,14 +1,13 @@
 <template>
     <div class="px-48">
         <app-layout />
-        <div class="search relative">
+        <div class="search relative mt-12">
             <input
                 type="text"
                 name="search-input"
                 id="search-input"
                 class="
                     rounded-full
-                    mt-12
                     w-96
                     text-md
                     focus:w-full
@@ -18,11 +17,28 @@
                 "
                 placeholder="Rechercher un article, une chanson, un artiste..."
                 autocomplete="off"
+                v-model="search"
             />
             <img
                 class="search-icon absolute"
                 src="img/search.svg"
                 alt="search"
+            />
+            <img
+                v-if="search.length > 0"
+                src="img/close.svg"
+                alt="close"
+                class="
+                    absolute
+                    w-4
+                    h-4
+                    right-4
+                    top-1/2
+                    transform
+                    -translate-y-1/2
+                    cursor-pointer
+                "
+                @click="search = ''"
             />
         </div>
         <news />
@@ -159,6 +175,11 @@ import AppLayout from "../Layouts/AppLayout.vue";
 
 export default {
     components: { AppLayout, News },
+    data() {
+        return {
+            search: "",
+        };
+    },
 };
 </script>
 

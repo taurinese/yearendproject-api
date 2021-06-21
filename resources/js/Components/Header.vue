@@ -73,7 +73,7 @@
                     aria-expanded="true"
                     aria-haspopup="true"
                 >
-                    Enzo
+                    {{ user.name }}
                     <!-- Heroicon name: solid/chevron-down -->
                     <svg
                         class="-mr-1 ml-2 h-5 w-5"
@@ -165,9 +165,12 @@
 </template>
 
 <script>
+import { computed } from "vue";
+import { usePage } from "@inertiajs/inertia-vue3";
 export default {
     setup() {
-        return {};
+        const user = computed(() => usePage().props.value.auth.user);
+        return { user };
     },
     data() {
         return {

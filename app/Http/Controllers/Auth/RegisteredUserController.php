@@ -53,4 +53,44 @@ class RegisteredUserController extends Controller
 
         return redirect(RouteServiceProvider::HOME);
     }
+
+    public function destroy(Request $request)
+    {
+        $request->validate([
+            'id' => 'required'
+        ]);
+
+        $user = User::where('id', $request->id)->first();
+        if ($user->url_image != "https://res.cloudinary.com/hyi9bajzn/image/upload/v1624269240/avatar_2_x2jw2c.png") {
+            cloudinary()->uploadApi()->destroy($user->cloudinary_id);
+        };
+        $user->delete();
+        // return redirect(RouteServiceProvider::HOME);
+        return redirect()->back();
+    }
+
+    public function edit(Request $request)
+    {
+        $user = User::where('id', $request->id)->first();
+        return Inertia::render('Admin/EditUser', [
+            'user' => $user
+        ]);
+    }
+
+    public function update(Request $request)
+    {
+        /*         $request->validate([
+            "title" => "required",
+            "body" => "required",
+            "active" => "required|boolean",
+            "published_at" => "required",
+            "url_image" => "required"
+        ]); */
+        $oldUser = User::where('id', $request->id)->first();
+        $oldUser->name = $request->name;
+        $oldUser->username = $request->username;
+        $oldUser->email = $request->email;
+        $oldUser->save();
+        return redirect('/admin/users');
+    }
 }

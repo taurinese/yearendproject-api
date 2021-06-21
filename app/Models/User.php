@@ -22,7 +22,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'username'
+        'username',
+        'url_image',
+        'cloudinary_id'
     ];
 
     /**

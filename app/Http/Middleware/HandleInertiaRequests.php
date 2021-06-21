@@ -34,6 +34,7 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request)
     {
         return array_merge(parent::share($request), [
+            'stripe_key' => env('VUE_APP_STRIPE_PUBLIC_KEY'),
             'auth' => [
                 'user' => $request->user(),
             ],

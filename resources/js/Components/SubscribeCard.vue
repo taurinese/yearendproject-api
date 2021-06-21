@@ -13,11 +13,11 @@
             "
         >
             <p class="py-4">
-                Écoutez votre musique uniquement en mode aléatoire, avec des
-                pubs.
+                {{ content }}
             </p>
             <p class="text-sm py-4">
-                <span class="text-base font-medium">0.00€</span>/mois
+                <span class="text-base font-medium">{{ price / 100 }}€</span
+                >/mois
             </p>
         </div>
         <button
@@ -44,34 +44,69 @@
                 top-1/2
                 left-1/2
                 w-2/5
-                h-2/3
+                h-2/5
                 border-2 border-blue-primary
                 rounded-lg
             "
         >
-            <h2 class="text-2xl text-center">Paiement</h2>
-            <stripe-modal />
+            <stripe-modal
+                @close="show = false"
+                :card="card"
+                :stripe="stripe"
+                :secret="secret"
+                :token="token"
+                :id="id"
+            />
         </div>
     </div>
 </template>
 
 <script>
 import StripeModal from "../Components/StripeModal.vue";
+import { computed } from "vue";
+import { usePage } from "@inertiajs/inertia-vue3";
+import axios from "axios";
 export default {
     name: "SubscribeCard",
     components: {
         StripeModal,
     },
-    props: ["name", "subscribable"],
+    props: ["name", "subscribable", "content", "price", "id"],
     data() {
         return {
             show: false,
+            token: process.env.VUE_APP_AUTH_TOKEN,
+            secret: null,
+            stripe: null,
+            payment_method: null,
+            card: null,
         };
     },
     methods: {
         displayStripeModal() {
             this.show = true;
+            this.$nextTick(function () {
+                // console.log(this.stripeKey);
+                this.stripe = window.Stripe(this.stripeKey);
+                const elements = this.stripe.elements();
+                this.card = elements.create("card");
+                this.card.mount("#card-element");
+                axios
+                    .post("/stripe/intent")
+                    .then((response) => {
+                        console.log(response.data);
+                        this.secret = response.data.client_secret;
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            });
         },
+    },
+    mounted() {},
+    setup() {
+        const stripeKey = computed(() => usePage().props.value.stripe_key);
+        return { stripeKey };
     },
 };
 </script>

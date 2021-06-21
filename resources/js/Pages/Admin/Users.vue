@@ -27,50 +27,6 @@
                         mr-6
                         relative
                     "
-                    @click="showAddForm"
-                >
-                    <img
-                        src="/img/plus.svg"
-                        alt="add"
-                        id="add-icon"
-                        class="
-                            w-6
-                            absolute
-                            top-1/2
-                            left-3
-                            transform
-                            -translate-y-1/2
-                            filter
-                            invert
-                        "
-                    />
-                    <span>Ajouter</span>
-                </button>
-                <button
-                    class="
-                        big-btn
-                        block
-                        pr-6
-                        pl-12
-                        py-2
-                        text-xs
-                        font-medium
-                        leading-6
-                        text-center text-white
-                        uppercase
-                        transition
-                        bg-blue-700
-                        rounded
-                        shadow
-                        ripple
-                        hover:shadow-lg
-                        hover:bg-blue-800
-                        hover:scale-105
-                        transform
-                        focus:outline-none
-                        mr-6
-                        relative
-                    "
                 >
                     <img
                         src="/img/refreshing.svg"
@@ -90,208 +46,7 @@
                     <span>Actualiser</span>
                 </button>
             </div>
-            <div v-if="showForm" class="w-full my-6 pb-6 bg-white shadow">
-                <div
-                    class="
-                        mb-4
-                        p-4
-                        flex flex-wrap
-                        items-start
-                        justify-between
-                        w-full
-                    "
-                >
-                    <div class="w-2/5">
-                        <label
-                            class="block text-gray-700 text-sm font-normal mb-2"
-                            for="username"
-                        >
-                            Titre
-                        </label>
-                        <input
-                            class="
-                                shadow
-                                appearance-none
-                                border
-                                rounded
-                                w-full
-                                py-2
-                                px-3
-                                text-gray-700
-                                leading-tight
-                                focus:outline-none
-                                focus:shadow-outline
-                            "
-                            name="title"
-                            v-model="form.title"
-                            type="text"
-                            required
-                            autofocus
-                            placeholder="Titre"
-                        />
-                    </div>
-                    <div class="w-2/5">
-                        <label
-                            class="block text-gray-700 text-sm font-normal mb-2"
-                            for="username"
-                        >
-                            Date de publication
-                        </label>
-                        <input
-                            class="
-                                shadow
-                                appearance-none
-                                border
-                                rounded
-                                w-full
-                                py-2
-                                px-3
-                                text-gray-700
-                                leading-tight
-                                focus:outline-none
-                                focus:shadow-outline
-                            "
-                            name="published_at"
-                            v-model="form.published_at"
-                            type="date"
-                            :min="currentDate"
-                            required
-                        />
-                    </div>
-                    <div class="w-full my-4">
-                        <label
-                            class="block text-gray-700 text-sm font-normal mb-2"
-                            for="username"
-                        >
-                            Body
-                        </label>
-                        <input
-                            class="
-                                shadow
-                                appearance-none
-                                border
-                                rounded
-                                w-full
-                                py-2
-                                px-3
-                                text-gray-700
-                                leading-tight
-                                focus:outline-none
-                                focus:shadow-outline
-                            "
-                            name="body"
-                            v-model="form.body"
-                            type="text"
-                            required
-                            placeholder="Body"
-                        />
-                    </div>
-                    <div class="w-2/5">
-                        <label
-                            class="
-                                w-full
-                                flex flex-col
-                                items-center
-                                px-4
-                                py-6
-                                bg-white
-                                text-blue
-                                rounded-lg
-                                shadow-lg
-                                tracking-wide
-                                uppercase
-                                border border-blue
-                                cursor-pointer
-                                hover:bg-blue
-                                hover:text-white
-                            "
-                        >
-                            <svg
-                                class="w-8 h-8"
-                                fill="currentColor"
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 20 20"
-                            >
-                                <path
-                                    d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"
-                                />
-                            </svg>
-                            <span class="mt-2 text-base leading-normal"
-                                >Select a file</span
-                            >
-                            <input type="file" class="hidden" />
-                        </label>
-                    </div>
-                    <div class="w-2/5">
-                        <label
-                            class="block text-gray-700 text-sm font-normal mb-2"
-                            for="username"
-                        >
-                            Publié
-                        </label>
-                        <input
-                            class="
-                                shadow
-                                appearance-none
-                                border
-                                rounded
-                                text-gray-700
-                                leading-tight
-                                focus:outline-none
-                                focus:shadow-outline
-                            "
-                            name="published_at"
-                            v-model="form.active"
-                            type="checkbox"
-                            required
-                        />
-                    </div>
-                </div>
-                <button
-                    class="
-                        big-btn
-                        block
-                        pr-6
-                        pl-12
-                        py-2
-                        ml-6
-                        text-xs
-                        font-medium
-                        leading-6
-                        text-center text-white
-                        uppercase
-                        transition
-                        bg-blue-700
-                        rounded
-                        shadow
-                        ripple
-                        hover:shadow-lg
-                        hover:bg-blue-800
-                        hover:scale-105
-                        transform
-                        focus:outline-none
-                        relative
-                    "
-                >
-                    <img
-                        src="/img/plus.svg"
-                        alt="add"
-                        id="add-icon"
-                        class="
-                            w-6
-                            absolute
-                            top-1/2
-                            left-3
-                            transform
-                            -translate-y-1/2
-                            filter
-                            invert
-                        "
-                    />
-                    <span>Ajouter</span>
-                </button>
-            </div>
-            <table v-else class="w-full shadow-lg rounded">
+            <table class="w-full shadow-lg rounded">
                 <thead>
                     <tr
                         class="
@@ -355,12 +110,14 @@
                         <td class="px-3 py-4">
                             <img
                                 class="w-12 h-12 rounded-full mx-auto"
-                                src="https://picsum.photos/640/400/?random"
+                                :src="user.url_image"
                                 alt=""
                             />
                         </td>
                         <td class="px-3 py-4 text-center">{{ user.name }}</td>
-                        <td class="px-3 py-4 text-center">taurinese</td>
+                        <td class="px-3 py-4 text-center">
+                            {{ user.username }}
+                        </td>
                         <td class="px-3 py-4 text-center">{{ user.email }}</td>
                         <td class="px-3 py-4">
                             <div class="flex item-center justify-center">
@@ -373,6 +130,7 @@
                                         hover:scale-110
                                         cursor-pointer
                                     "
+                                    @click="editUser(user.id)"
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -397,6 +155,7 @@
                                         hover:scale-110
                                         cursor-pointer
                                     "
+                                    @click="deleteUser(user.id)"
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -423,34 +182,32 @@
 
 <script>
 import AdminLayout from "../../Layouts/AdminLayout.vue";
+import { useForm } from "@inertiajs/inertia-vue3";
+
 export default {
     components: {
         AdminLayout,
     },
     data() {
-        return {
-            showForm: false,
-            currentDate: new Date(Date.now()).toISOString().split("T")[0],
-            form: {
-                title: "",
-                body: "",
-                url_image: "",
-                published_at: "",
-                active: "",
-            },
-        };
+        return {};
     },
     setup() {
         return {};
     },
     props: ["users"],
     methods: {
-        showAddForm() {
-            this.showForm = !this.showForm;
+        deleteUser(id) {
+            const form = useForm({
+                id: id,
+            });
+            form.delete("/admin/users/delete");
         },
-    },
-    mounted() {
-        console.log(this.currentDate);
+        editUser(id) {
+            const form = useForm({
+                id: id,
+            });
+            form.post("/admin/users/edit");
+        },
     },
 };
 </script>
