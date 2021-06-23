@@ -7,8 +7,8 @@
                         <inertia-link href="/">
                             <img
                                 class="nav-icons"
-                                src="img/account.svg"
-                                alt="account"
+                                src="img/spotifree.svg"
+                                alt="spotifree"
                             />
                             <!-- <span class="nav-opened-text">Home</span> -->
                         </inertia-link>

@@ -51,4 +51,18 @@ class CheckoutController extends Controller
             return response()->json($e->payment);
         }
     }
+
+    public function freeSubscribe(Request $request)
+    {
+        $plan = Plan::where('name', '=', 'gratuit');
+        try {
+            $subscription = $request->user()
+                ->newSubscription($plan->name, $plan->stripe_id)
+                ->withCoupon($request->coupon)
+                ->create($request->payment_method);
+            return response()->json($subscription);
+        } catch (\Laravel\Cashier\Exceptions\IncompletePayment $e) {
+            return response()->json($e->payment);
+        }
+    }
 }

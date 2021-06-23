@@ -17,7 +17,8 @@
             </p>
             <p class="text-sm py-4">
                 <span class="text-base font-medium">{{ price / 100 }}€</span
-                >/mois
+                ><span v-if="name == 'annuel'">/an</span
+                ><span v-else>/mois</span>
             </p>
         </div>
         <button

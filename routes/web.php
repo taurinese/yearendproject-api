@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -37,6 +38,7 @@ Route::inertia('/playlist', 'Playlist');
 Route::inertia('/checkout2', 'Checkout2');
 
 Route::post('/upload/avatar', [ProfileController::class, 'updateAvatar']);
+Route::post('/contact/send', [ContactController::class, 'sendmail']);
 
 
 Route::middleware('auth')->group(function () {
@@ -50,6 +52,8 @@ Route::middleware('auth')->group(function () {
 Route::middleware('authadmin')->group(function () {
     Route::inertia('/admin/', 'Admin/Dashboard');
     Route::get('/admin/users', [AdminController::class, 'userDashboard']);
+
+    Route::get('/admin/subscribers', [AdminController::class, 'subscribeDashboard']);
     Route::get('/admin/posts', [AdminController::class, 'newsDashboard']);
     Route::delete('/admin/posts/delete', [PostController::class, 'delete']);
     Route::post('/admin/posts/create', [PostController::class, 'store']);

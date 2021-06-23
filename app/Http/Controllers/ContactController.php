@@ -11,8 +11,20 @@ class ContactController extends Controller
 {
     public function sendmail(Request $request)
     {
-        $email = $request->email;
-        Mail::to($email)->send(new Contact);
-        return redirect()->home();
+        // dd($request->all());
+        try {
+            Mail::send('emails.contact', ['user' => [
+                'email' => $request->email,
+                'name' => $request->name,
+                'subject' => $request->subject,
+                'body' => $request->body
+            ]], function ($m) use ($request) {
+                $m->from($request->email, $request->name);
+
+                $m->to(env('MAIL_TO'), 'Spotifree')->subject('Vous avez un nouveau message!');
+            });
+        } catch (\Throwable $th) {
+            dd($th);
+        }
     }
 }

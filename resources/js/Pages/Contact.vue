@@ -126,7 +126,7 @@
 <script>
 import AppLayout from "../Layouts/AppLayout.vue";
 import { computed } from "vue";
-import { usePage } from "@inertiajs/inertia-vue3";
+import { usePage, useForm } from "@inertiajs/inertia-vue3";
 export default {
     components: {
         AppLayout,
@@ -137,22 +137,26 @@ export default {
     },
     data() {
         return {
-            form: {
+            form: this.$inertia.form({
                 email: "",
                 name: "",
                 subject: "",
                 body: "",
-            },
+            }),
         };
     },
     methods: {
         sendMail() {
+            const form = useForm(this.form);
+            form.post("/contact/send");
             console.log(this.form);
         },
     },
     mounted() {
-        this.form.name = this.user.name;
-        this.form.email = this.user.email;
+        if (this.user) {
+            this.form.name = this.user.name;
+            this.form.email = this.user.email;
+        }
     },
 };
 </script>
