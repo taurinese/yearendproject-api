@@ -44,7 +44,7 @@ class CheckoutController extends Controller
 
         $subscription = Auth::user()->subscriptions()->first();
         if ($subscription) {
-            dd($subscription);
+            return dd($subscription);
             Auth::user()->subscription('default')->swap('annuel');
         }
 

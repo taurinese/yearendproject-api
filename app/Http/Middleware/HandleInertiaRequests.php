@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Plan;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
@@ -40,6 +41,7 @@ class HandleInertiaRequests extends Middleware
                 'user' => $request->user(),
             ],
             'news' => Post::where('active', true)->get(),
+            'current_subscription' => Plan::where('name', '=', $request->user()->subscriptions()->first()->name)->first()
         ]);
     }
 }
