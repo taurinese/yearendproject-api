@@ -22,7 +22,7 @@
                                 alt="Placeholder"
                                 class="
                                     rounded-lg
-                                    object-cover
+                                    object-contain
                                     h-48
                                     max-w-full
                                     mx-auto
@@ -61,9 +61,7 @@
                         <p
                             class="text-base text-left pt-0 md:pt-0 p-2 md:p-4"
                             v-html="body"
-                        >
-                            {{ body }}
-                        </p>
+                        ></p>
                     </div>
                     <div class="col-span-3 row-span-1">
                         <p class="px-2 md:px-4 text-sm italic text-right">

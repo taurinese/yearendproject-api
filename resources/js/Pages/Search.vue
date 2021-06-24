@@ -19,6 +19,8 @@
                 autocomplete="off"
                 v-model="search"
                 @keyup.enter="searchResult"
+                @focus="focus = true"
+                @blur="focus = false"
             />
             <img
                 class="search-icon absolute"
@@ -26,7 +28,7 @@
                 alt="search"
             />
             <img
-                v-if="search.length > 0"
+                v-if="focus"
                 src="img/close.svg"
                 alt="close"
                 class="
@@ -202,6 +204,7 @@ export default {
             search: "",
             results: [],
             searching: false,
+            focus: false
         };
     },
     methods: {
