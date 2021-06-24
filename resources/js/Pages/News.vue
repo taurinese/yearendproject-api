@@ -3,26 +3,19 @@
         <app-layout />
         <h2 class="text-xl text-white font-bold mb-16">Actualités</h2>
         <div class="pt-12 grid grid-cols-3 grid-flow-row gap-y-10">
-            <inertia-link href="/new">
-                <news-card class="col-span-1 row-span-1" />
-            </inertia-link>
-            <inertia-link href="/new">
-                <news-card class="col-span-1 row-span-1" />
-            </inertia-link>
-            <inertia-link href="/new">
-                <news-card class="col-span-1 row-span-1" />
-            </inertia-link>
-            <inertia-link href="/new">
-                <news-card class="col-span-1 row-span-1" />
-            </inertia-link>
-            <inertia-link href="/new">
-                <news-card class="col-span-1 row-span-1" />
-            </inertia-link>
-            <inertia-link href="/new">
-                <news-card class="col-span-1 row-span-1" />
-            </inertia-link>
-            <inertia-link href="/new">
-                <news-card class="col-span-1 row-span-1" />
+            <inertia-link
+                v-for="post in news"
+                :key="post"
+                :href="'/news/' + post.id"
+            >
+                <news-card
+                    :title="post.title"
+                    :body="post.body"
+                    :author="Enzo"
+                    :datetime="post.published_at"
+                    :img="post.url_image"
+                    class="col-span-1 row-span-1"
+                />
             </inertia-link>
         </div>
     </div>
@@ -31,9 +24,15 @@
 <script>
 import NewsCard from "../Components/NewsCard.vue";
 import AppLayout from "../Layouts/AppLayout.vue";
+import { computed } from "vue";
+import { usePage } from "@inertiajs/inertia-vue3";
 
 export default {
     components: { AppLayout, NewsCard },
+    setup() {
+        const news = computed(() => usePage().props.value.news);
+        return { news };
+    },
 };
 </script>
 

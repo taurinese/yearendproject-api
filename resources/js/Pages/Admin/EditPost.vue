@@ -75,7 +75,7 @@
                     >
                         Body
                     </label>
-                    <input
+                    <!-- <input
                         class="
                             shadow
                             appearance-none
@@ -94,6 +94,11 @@
                         type="text"
                         required
                         placeholder="Body"
+                    /> -->
+                    <QuillEditor
+                        theme="snow"
+                        v-model:content="form.body"
+                        contentType="html"
                     />
                 </div>
                 <div class="w-2/5">
@@ -222,10 +227,15 @@
 <script>
 import AdminLayout from "../../Layouts/AdminLayout.vue";
 import { useForm } from "@inertiajs/inertia-vue3";
+// Quill Editor
+import { QuillEditor } from "@vueup/vue-quill";
+import "@vueup/vue-quill/dist/vue-quill.snow.css";
+/* ----- */
 
 export default {
     components: {
         AdminLayout,
+        QuillEditor,
     },
     setup() {
         return {};

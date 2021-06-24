@@ -84,4 +84,22 @@ class PostController extends Controller
         $oldPost->save();
         return redirect('/admin/posts');
     }
+
+    public function search(Request $request)
+    {
+        // Get the search value from the request
+        $search = $request->search;
+
+        // Search in the title and body columns from the posts table
+        $posts = Post::query()
+            ->where('active', 1)
+            ->where(function ($q) use ($search) {
+                $q->where('title', 'LIKE', "%{$search}%")->orWhere('body', 'LIKE', "%{$search}%");
+            })
+            ->get();
+
+        // dd(count($posts), $posts);
+        // Return the results
+        return $posts;
+    }
 }

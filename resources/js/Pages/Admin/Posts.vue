@@ -168,7 +168,7 @@
                         >
                             Body
                         </label>
-                        <input
+                        <!-- <input
                             class="
                                 shadow
                                 appearance-none
@@ -187,6 +187,11 @@
                             type="text"
                             required
                             placeholder="Body"
+                        /> -->
+                        <QuillEditor
+                            theme="snow"
+                            v-model:content="form.body"
+                            contentType="html"
                         />
                     </div>
                     <div class="w-2/5">
@@ -483,10 +488,15 @@
 <script>
 import AdminLayout from "../../Layouts/AdminLayout.vue";
 import { useForm } from "@inertiajs/inertia-vue3";
+// Quill Editor
+import { QuillEditor } from "@vueup/vue-quill";
+import "@vueup/vue-quill/dist/vue-quill.snow.css";
+/* ----- */
 
 export default {
     components: {
         AdminLayout,
+        QuillEditor,
     },
     data() {
         return {
@@ -511,7 +521,18 @@ export default {
         },
         submitForm() {
             this.form.post("/admin/posts/create", {
-                onFinish: () => (this.showForm = !this.showForm),
+                onFinish: () => {
+                    this.showForm = !this.showForm;
+                    this.form = this.$inertia.form({
+                        title: "",
+                        body: "",
+                        url_image: "",
+                        published_at: new Date(Date.now())
+                            .toISOString()
+                            .split("T")[0],
+                        active: true,
+                    });
+                },
             });
         },
         deletePost(id) {
@@ -527,6 +548,7 @@ export default {
             form.post("/admin/posts/edit");
         },
     },
+    computed: {},
     mounted() {
         console.log(this.currentDate);
     },

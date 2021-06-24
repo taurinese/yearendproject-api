@@ -39,6 +39,7 @@ Route::inertia('/checkout2', 'Checkout2');
 
 Route::post('/upload/avatar', [ProfileController::class, 'updateAvatar']);
 Route::post('/contact/send', [ContactController::class, 'sendmail']);
+Route::post('/search', [PostController::class, 'search']);
 
 
 Route::middleware('auth')->group(function () {

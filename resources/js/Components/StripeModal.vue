@@ -114,21 +114,12 @@ export default {
                         ) {
                             // Confirmation
                             this.requiresAction = true;
-                            /* this.$emit("paymentMethod", this.payment_method);
-                            this.$emit("requiresAction", true);
-                            this.$emit("paymentIntent", response.data); */
-                            console.log("emit 1");
                         } else {
                             this.paymentProcessed = true;
                             this.messageProcessed =
                                 "Merci de votre abonnement ! 🤑";
                             console.log("emit 2");
                             this.resetForm();
-                            /* this.$emit("paymentProcessed", true);
-                            this.$emit(
-                                "messageProcessed",
-                                "Merci de votre abonnement ! 🤑"
-                            ); */
                         }
                     })
                     .catch((error) => {

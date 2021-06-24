@@ -18,6 +18,7 @@
                 placeholder="Rechercher un article, une chanson, un artiste..."
                 autocomplete="off"
                 v-model="search"
+                @keyup.enter="searchResult"
             />
             <img
                 class="search-icon absolute"
@@ -41,144 +42,181 @@
                 @click="search = ''"
             />
         </div>
-        <news />
-        <div class="py-24">
-            <h2 class="text-xl text-white font-bold mb-16">Parcourir</h2>
-            <div
-                class="
-                    flex flex-row
-                    justify-between
-                    items-center
-                    overflow-x-scroll
-                "
-            >
-                <div class="w-48 m-auto mr-4">
+        <transition name="fade">
+            <div v-if="!searching">
+                <news />
+                <div class="py-24">
+                    <h2 class="text-xl text-white font-bold mb-16">
+                        Parcourir
+                    </h2>
                     <div
                         class="
-                            music-card
-                            rounded-xl
-                            w-48
-                            h-48
-                            bg-red-400
                             flex flex-row
-                            justify-center
+                            justify-between
                             items-center
+                            overflow-x-scroll
                         "
                     >
-                        Rock
-                    </div>
-                </div>
-                <div class="w-48 m-auto mr-4">
-                    <div
-                        class="
-                            music-card
-                            rounded-xl
-                            w-48
-                            h-48
-                            bg-red-400
-                            flex flex-row
-                            justify-center
-                            items-center
-                        "
-                    >
-                        Pop
-                    </div>
-                </div>
-                <div class="w-48 m-auto mr-4">
-                    <div
-                        class="
-                            music-card
-                            rounded-xl
-                            w-48
-                            h-48
-                            bg-red-400
-                            flex flex-row
-                            justify-center
-                            items-center
-                        "
-                    >
-                        Country
-                    </div>
-                </div>
-                <div class="w-48 m-auto mr-4">
-                    <div
-                        class="
-                            music-card
-                            rounded-xl
-                            w-48
-                            h-48
-                            bg-red-400
-                            flex flex-row
-                            justify-center
-                            items-center
-                        "
-                    >
-                        Country
-                    </div>
-                </div>
-                <div class="w-48 m-auto mr-4">
-                    <div
-                        class="
-                            music-card
-                            rounded-xl
-                            w-48
-                            h-48
-                            bg-red-400
-                            flex flex-row
-                            justify-center
-                            items-center
-                        "
-                    >
-                        Country
-                    </div>
-                </div>
-                <div class="w-48 m-auto mr-4">
-                    <div
-                        class="
-                            music-card
-                            rounded-xl
-                            w-48
-                            h-48
-                            bg-red-400
-                            flex flex-row
-                            justify-center
-                            items-center
-                        "
-                    >
-                        Country
-                    </div>
-                </div>
-                <div class="w-48 m-auto">
-                    <div
-                        class="
-                            music-card
-                            rounded-xl
-                            w-48
-                            h-48
-                            bg-red-400
-                            flex flex-row
-                            justify-center
-                            items-center
-                        "
-                    >
-                        Country
+                        <div class="w-48 m-auto mr-4">
+                            <div
+                                class="
+                                    music-card
+                                    rounded-xl
+                                    w-48
+                                    h-48
+                                    bg-red-400
+                                    flex flex-row
+                                    justify-center
+                                    items-center
+                                "
+                            >
+                                Rock
+                            </div>
+                        </div>
+                        <div class="w-48 m-auto mr-4">
+                            <div
+                                class="
+                                    music-card
+                                    rounded-xl
+                                    w-48
+                                    h-48
+                                    bg-red-400
+                                    flex flex-row
+                                    justify-center
+                                    items-center
+                                "
+                            >
+                                Pop
+                            </div>
+                        </div>
+                        <div class="w-48 m-auto mr-4">
+                            <div
+                                class="
+                                    music-card
+                                    rounded-xl
+                                    w-48
+                                    h-48
+                                    bg-red-400
+                                    flex flex-row
+                                    justify-center
+                                    items-center
+                                "
+                            >
+                                Country
+                            </div>
+                        </div>
+                        <div class="w-48 m-auto mr-4">
+                            <div
+                                class="
+                                    music-card
+                                    rounded-xl
+                                    w-48
+                                    h-48
+                                    bg-red-400
+                                    flex flex-row
+                                    justify-center
+                                    items-center
+                                "
+                            >
+                                Country
+                            </div>
+                        </div>
+                        <div class="w-48 m-auto mr-4">
+                            <div
+                                class="
+                                    music-card
+                                    rounded-xl
+                                    w-48
+                                    h-48
+                                    bg-red-400
+                                    flex flex-row
+                                    justify-center
+                                    items-center
+                                "
+                            >
+                                Country
+                            </div>
+                        </div>
+                        <div class="w-48 m-auto mr-4">
+                            <div
+                                class="
+                                    music-card
+                                    rounded-xl
+                                    w-48
+                                    h-48
+                                    bg-red-400
+                                    flex flex-row
+                                    justify-center
+                                    items-center
+                                "
+                            >
+                                Country
+                            </div>
+                        </div>
+                        <div class="w-48 m-auto">
+                            <div
+                                class="
+                                    music-card
+                                    rounded-xl
+                                    w-48
+                                    h-48
+                                    bg-red-400
+                                    flex flex-row
+                                    justify-center
+                                    items-center
+                                "
+                            >
+                                Country
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </transition>
+        <transition name="fade">
+            <div v-if="results.length > 0" class="mt-24">
+                <div v-for="result in results" :key="result">
+                    <news-card
+                        :title="result.title"
+                        :body="result.body"
+                        author="Enzo"
+                        :datetime="result.published_at"
+                        :img="result.url_image"
+                    />
+                </div>
+            </div>
+        </transition>
     </div>
 </template>
 
 <script>
 import News from "../Components/NewsSlider.vue";
+import NewsCard from "../Components/NewsCard.vue";
 import AppLayout from "../Layouts/AppLayout.vue";
+import axios from "axios";
 
 export default {
-    components: { AppLayout, News },
+    components: { AppLayout, News, NewsCard },
     data() {
         return {
             search: "",
+            results: [],
+            searching: false,
         };
+    },
+    methods: {
+        searchResult() {
+            this.searching = true;
+            axios
+                .post("/search", { search: this.search })
+                .then((response) => {
+                    this.results = response.data;
+                    console.log(this.results);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
     },
 };
 </script>
@@ -204,5 +242,12 @@ input[type="text"] {
         width: 100%;
         transition: ease-in-out width 0.5s;
     }
+}
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
 }
 </style>

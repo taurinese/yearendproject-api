@@ -39,7 +39,14 @@ class CheckoutController extends Controller
             'coupon' => 'nullable'
         ]);
 
+
         $plan = Plan::find($request->plan);
+
+        $subscription = Auth::user()->subscriptions()->first();
+        if ($subscription) {
+            dd($subscription);
+            Auth::user()->subscription('default')->swap('annuel');
+        }
 
         try {
             $subscription = $request->user()
