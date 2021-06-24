@@ -18475,6 +18475,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     displayStripeModal: function displayStripeModal() {
+      if (this.current_subscription) {
+        axios__WEBPACK_IMPORTED_MODULE_3___default().post("/stripe/swap").then(function (response) {});
+        return;
+      }
+
       this.show = true;
       this.$nextTick(function () {
         var _this = this;
@@ -18498,8 +18503,12 @@ __webpack_require__.r(__webpack_exports__);
     var stripeKey = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
       return (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.usePage)().props.value.stripe_key;
     });
+    var current_subscription = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
+      return (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.usePage)().props.value.current_subscription;
+    });
     return {
-      stripeKey: stripeKey
+      stripeKey: stripeKey,
+      current_subscription: current_subscription
     };
   }
 });
@@ -18539,6 +18548,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
+    console.log(this.current_payment);
     axios__WEBPACK_IMPORTED_MODULE_1___default().get("/stripe").then(function (response) {
       _this.plans = response.data; // console.log(this.plans);
     });
@@ -18547,8 +18557,12 @@ __webpack_require__.r(__webpack_exports__);
     var current_subscription = (0,vue__WEBPACK_IMPORTED_MODULE_2__.computed)(function () {
       return (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_3__.usePage)().props.value.current_subscription;
     });
+    var current_payment = (0,vue__WEBPACK_IMPORTED_MODULE_2__.computed)(function () {
+      return (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_3__.usePage)().props.value.current_payment;
+    });
     return {
-      current_subscription: current_subscription
+      current_subscription: current_subscription,
+      current_payment: current_payment
     };
   },
   computed: {

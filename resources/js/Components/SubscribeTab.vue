@@ -42,6 +42,7 @@ export default {
         };
     },
     mounted() {
+        console.log(this.current_payment);
         axios.get("/stripe").then((response) => {
             this.plans = response.data;
             // console.log(this.plans);
@@ -51,7 +52,10 @@ export default {
         const current_subscription = computed(
             () => usePage().props.value.current_subscription
         );
-        return { current_subscription };
+        const current_payment = computed(
+            () => usePage().props.value.current_payment
+        );
+        return { current_subscription, current_payment };
     },
     computed: {
         getPlans() {

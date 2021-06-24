@@ -41,7 +41,8 @@ class HandleInertiaRequests extends Middleware
                 'user' => $request->user(),
             ],
             'news' => Post::where('active', true)->get(),
-            'current_subscription' => Plan::where('name', '=', $request->user()->subscriptions()->first()->name)->first()
+            'current_subscription' => $request->user() ? Plan::where('name', '=', $request->user()->subscriptions()->first()->name)->first() : null,
+            'current_payment' => $request->user() ? $request->user()->defaultPaymentMethod() : null
         ]);
     }
 }

@@ -85,6 +85,13 @@ export default {
     },
     methods: {
         displayStripeModal() {
+            if (this.current_subscription) {
+                axios.post("/stripe/swap")
+                .then((response) => {
+                    
+                })
+                return;
+            }
             this.show = true;
             this.$nextTick(function () {
                 // console.log(this.stripeKey);
@@ -107,7 +114,10 @@ export default {
     mounted() {},
     setup() {
         const stripeKey = computed(() => usePage().props.value.stripe_key);
-        return { stripeKey };
+        const current_subscription = computed(
+            () => usePage().props.value.current_subscription
+        );
+        return { stripeKey, current_subscription };
     },
 };
 </script>

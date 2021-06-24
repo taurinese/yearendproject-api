@@ -47,9 +47,14 @@ class RegisteredUserController extends Controller
             'username' => $request->username
         ]);
 
+
         event(new Registered($user));
 
         Auth::login($user);
+        // dd($request->user());
+
+        $request->user = $user;
+        app('App\Http\Controllers\CheckoutController')->freeSubscribe($request);
 
         return redirect(RouteServiceProvider::HOME);
     }

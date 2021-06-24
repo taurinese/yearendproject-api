@@ -42,12 +42,6 @@ class CheckoutController extends Controller
 
         $plan = Plan::find($request->plan);
 
-        $subscription = Auth::user()->subscriptions()->first();
-        if ($subscription) {
-            return dd($subscription);
-            Auth::user()->subscription('default')->swap('annuel');
-        }
-
         try {
             $subscription = $request->user()
                 ->newSubscription($plan->name, $plan->stripe_id)
@@ -59,14 +53,20 @@ class CheckoutController extends Controller
         }
     }
 
+    public function swapSubscribe(Request $request)
+    {
+        dd($request);
+        //$request->user()->subscription('default')->swap('annuel');
+    }
+
+
     public function freeSubscribe(Request $request)
     {
-        $plan = Plan::where('name', '=', 'gratuit');
+        $plan = Plan::where('name', '=', 'gratuit')->first();
         try {
             $subscription = $request->user()
                 ->newSubscription($plan->name, $plan->stripe_id)
-                ->withCoupon($request->coupon)
-                ->create($request->payment_method);
+                ->create();
             return response()->json($subscription);
         } catch (\Laravel\Cashier\Exceptions\IncompletePayment $e) {
             return response()->json($e->payment);
