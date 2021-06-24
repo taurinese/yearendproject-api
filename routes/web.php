@@ -48,7 +48,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/checkout', [CheckoutController::class, 'store']);
     Route::post('/stripe/intent', [CheckoutController::class, 'createIntent']);
     Route::post('/stripe/subscribe', [CheckoutController::class, 'subscribe']);
+    Route::post('/stripe/swap', [CheckoutController::class, 'swapSubscribe']);
 });
+
 
 Route::middleware('authadmin')->group(function () {
     Route::inertia('/admin/', 'Admin/Dashboard');

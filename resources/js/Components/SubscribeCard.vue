@@ -85,11 +85,15 @@ export default {
     },
     methods: {
         displayStripeModal() {
-            if (this.current_subscription) {
-                axios.post("/stripe/swap")
-                .then((response) => {
-                    
-                })
+            if (this.current_payment) {
+                console.log("swap");
+                axios
+                    .post("/stripe/swap", {
+                        plan: this.id,
+                    })
+                    .then((response) => {
+                        console.log(response.data);
+                    });
                 return;
             }
             this.show = true;
@@ -117,7 +121,10 @@ export default {
         const current_subscription = computed(
             () => usePage().props.value.current_subscription
         );
-        return { stripeKey, current_subscription };
+        const current_payment = computed(
+            () => usePage().props.value.current_payment
+        );
+        return { stripeKey, current_subscription, current_payment };
     },
 };
 </script>

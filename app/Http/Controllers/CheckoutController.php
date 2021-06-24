@@ -55,8 +55,11 @@ class CheckoutController extends Controller
 
     public function swapSubscribe(Request $request)
     {
-        dd($request);
-        //$request->user()->subscription('default')->swap('annuel');
+        $currentPlan = $request->user()->subscriptions()->first();
+        $plan = Plan::find($request->plan);
+        // dd($currentPlan, $plan);
+        $result = $request->user()->subscription($currentPlan->name)->swap($plan->stripe_id);
+        return response()->json($result);
     }
 
 

@@ -18475,8 +18475,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     displayStripeModal: function displayStripeModal() {
-      if (this.current_subscription) {
-        axios__WEBPACK_IMPORTED_MODULE_3___default().post("/stripe/swap").then(function (response) {});
+      if (this.current_payment) {
+        console.log("swap");
+        axios__WEBPACK_IMPORTED_MODULE_3___default().post("/stripe/swap", {
+          plan: this.id
+        }).then(function (response) {
+          console.log(response.data);
+        });
         return;
       }
 
@@ -18506,9 +18511,13 @@ __webpack_require__.r(__webpack_exports__);
     var current_subscription = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
       return (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.usePage)().props.value.current_subscription;
     });
+    var current_payment = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
+      return (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.usePage)().props.value.current_payment;
+    });
     return {
       stripeKey: stripeKey,
-      current_subscription: current_subscription
+      current_subscription: current_subscription,
+      current_payment: current_payment
     };
   }
 });
