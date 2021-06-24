@@ -68,6 +68,16 @@
                             <span class="nav-opened-text">Bibliothèque</span>
                         </inertia-link>
                     </li>
+                    <li v-if="admin">
+                        <inertia-link href="/admin">
+                            <img
+                                class="nav-icons"
+                                src="img/admin.svg"
+                                alt="admin"
+                            />
+                            <span class="nav-opened-text">Administration</span>
+                        </inertia-link>
+                    </li>
                     <li v-if="user">
                         <inertia-link href="/logout" method="post">
                             <img
@@ -91,7 +101,8 @@ import { usePage } from "@inertiajs/inertia-vue3";
 export default {
     setup() {
         const user = computed(() => usePage().props.value.auth.user);
-        return { user };
+        const admin = computed(() => usePage().props.value.admin);
+        return { user, admin };
     },
 };
 </script>
