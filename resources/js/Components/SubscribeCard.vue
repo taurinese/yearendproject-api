@@ -1,7 +1,7 @@
 <template>
     <div class="w-3/4 card mr-4 border-2 border-black rounded-lg relative">
         <div class="bg-blue-primary h-1/2 rounded-t-lg">
-            <h3 class="pl-4 pt-4 text-white text-2xl">{{ name }}</h3>
+            <h3 class="pl-4 pt-4 text-white text-2xl">Abonnement {{ name }}</h3>
         </div>
         <div
             class="

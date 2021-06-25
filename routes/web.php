@@ -37,7 +37,6 @@ Route::inertia('/library', 'Library');
 Route::inertia('/playlist', 'Playlist');
 Route::inertia('/checkout2', 'Checkout2');
 
-Route::post('/upload/avatar', [ProfileController::class, 'updateAvatar']);
 Route::post('/contact/send', [ContactController::class, 'sendmail']);
 Route::post('/search', [PostController::class, 'search']);
 
@@ -49,6 +48,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/stripe/intent', [CheckoutController::class, 'createIntent']);
     Route::post('/stripe/subscribe', [CheckoutController::class, 'subscribe']);
     Route::post('/stripe/swap', [CheckoutController::class, 'swapSubscribe']);
+    Route::post('/upload/avatar', [ProfileController::class, 'updateAvatar']);
+    Route::post('/upload/name', [ProfileController::class, 'updateName']);
+    Route::post('/upload/username', [ProfileController::class, 'updateUsername']);
+    Route::post('/upload/email', [ProfileController::class, 'updateEmail']);
+    Route::post('/upload/password', [ProfileController::class, 'updatePassword']);
 });
 
 

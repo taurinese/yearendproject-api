@@ -18159,7 +18159,47 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "PasswordTab",
+  data: function data() {
+    return {
+      form: {
+        currentPassword: "",
+        newPassword: "",
+        confirmPassword: ""
+      },
+      errors: [],
+      success: ""
+    };
+  },
+  methods: {
+    updatePassword: function updatePassword() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post("/upload/password", this.form).then(function (response) {
+        console.log(response);
+        _this.errors = [];
+        _this.success = response.data.messages;
+        _this.resetForm;
+      })["catch"](function (error) {
+        console.log(error.response.data.errors);
+        _this.errors = [];
+
+        _this.errors.push(error.response.data.errors);
+
+        _this.resetForm;
+      });
+    },
+    resetForm: function resetForm() {
+      this.form.currentPassword = "";
+      this.form.newPassword = "";
+      this.form.confirmPassword = "";
+    }
+  }
+});
 
 /***/ }),
 
@@ -18202,10 +18242,18 @@ __webpack_require__.r(__webpack_exports__);
       user: user
     };
   },
+  mounted: function mounted() {
+    this.name = this.user.name;
+    this.email = this.user.email;
+    this.username = this.user.username;
+  },
   data: function data() {
     return {
       avatar: null,
-      url: null
+      url: null,
+      name: null,
+      email: null,
+      username: null
     };
   },
   methods: {
@@ -18215,6 +18263,24 @@ __webpack_require__.r(__webpack_exports__);
         avatar: this.avatar
       });
       form.post("/upload/avatar");
+    },
+    updateName: function updateName() {
+      var form = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.useForm)({
+        name: this.name
+      });
+      form.post("/upload/name");
+    },
+    updateUsername: function updateUsername() {
+      var form = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.useForm)({
+        name: this.name
+      });
+      form.post("/upload/username");
+    },
+    updateEmail: function updateEmail() {
+      var form = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.useForm)({
+        email: this.email
+      });
+      form.post("/upload/email");
     },
     onFileChange: function onFileChange() {
       console.log("change");
@@ -20294,11 +20360,123 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
+var _hoisted_1 = {
+  key: 0,
+  "class": "w-full p-4"
+};
 
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"flex justify-evenly w-full p-4\"><label class=\"text-xl w-2/5 text-left\" for=\"first_name\">Mot de passe actuel</label><input class=\"\n                    w-2/3\n                    border-0 border-b-2\n                    focus:outline-none\n                    focus:ring-0\n                    p-0\n                \" name=\"first_name\" id=\"first_name\" type=\"text\"></div><div class=\"flex justify-evenly w-full p-4\"><label class=\"text-xl w-2/5 text-left\" for=\"first_name\">Nouveau mot de passe</label><input class=\"\n                    w-2/3\n                    border-0 border-b-2\n                    focus:outline-none\n                    focus:ring-0\n                    p-0\n                \" name=\"last_name\" id=\"last_name\" type=\"text\"></div><div class=\"flex justify-evenly w-full p-4\"><label class=\"text-xl w-2/5 text-left\" for=\"first_name\">Répéter le nouveau mot de passe</label><input class=\"\n                    w-2/3\n                    border-0 border-b-2\n                    focus:outline-none\n                    focus:ring-0\n                    p-0\n                \" name=\"email\" id=\"email\" type=\"email\"></div><button class=\"\n                bg-blue-primary\n                text-white\n                rounded-xl\n                focus:outline-none\n                focus:ring-0\n                border-0\n                px-4\n                ml-4\n            \"> Modifier le mot de passe </button>", 4);
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("strong", {
+  "class": "font-bold"
+}, "Erreur! ", -1
+/* HOISTED */
+);
+
+var _hoisted_3 = {
+  "class": "block sm:inline"
+};
+var _hoisted_4 = {
+  key: 1,
+  "class": "\n                bg-green-100\n                border border-green-400\n                text-green-700\n                px-4\n                py-3\n                rounded\n                relative\n                mb-3\n            ",
+  role: "alert"
+};
+
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("strong", {
+  "class": "font-bold"
+}, "Success! ", -1
+/* HOISTED */
+);
+
+var _hoisted_6 = {
+  "class": "block sm:inline"
+};
+var _hoisted_7 = {
+  "class": "flex justify-evenly w-full p-4"
+};
+
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+  "class": "text-xl w-2/5 text-left",
+  "for": "current_password"
+}, "Mot de passe actuel", -1
+/* HOISTED */
+);
+
+var _hoisted_9 = {
+  "class": "flex justify-evenly w-full p-4"
+};
+
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+  "class": "text-xl w-2/5 text-left",
+  "for": "new_password"
+}, "Nouveau mot de passe", -1
+/* HOISTED */
+);
+
+var _hoisted_11 = {
+  "class": "flex justify-evenly w-full p-4"
+};
+
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+  "class": "text-xl w-2/5 text-left",
+  "for": "confirm_password"
+}, "Répéter le nouveau mot de passe", -1
+/* HOISTED */
+);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", null, [_hoisted_1]);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", null, [$data.errors.length > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.errors, function (element) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
+      key: element
+    }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(element, function (error) {
+      return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
+        "class": "\n                        bg-red-100\n                        border border-red-400\n                        text-red-700\n                        px-4\n                        py-3\n                        rounded\n                        relative\n                        mb-3\n                    ",
+        role: "alert",
+        key: error
+      }, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(error[0]), 1
+      /* TEXT */
+      )]);
+    }), 128
+    /* KEYED_FRAGMENT */
+    ))]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.success ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.success), 1
+  /* TEXT */
+  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    "class": "\n                    w-2/3\n                    border-0 border-b-2\n                    focus:outline-none\n                    focus:ring-0\n                    p-0\n                ",
+    name: "current_password",
+    id: "current_password",
+    type: "password",
+    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+      return $data.form.currentPassword = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.currentPassword]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    "class": "\n                    w-2/3\n                    border-0 border-b-2\n                    focus:outline-none\n                    focus:ring-0\n                    p-0\n                ",
+    name: "new_password",
+    id: "new_password",
+    type: "password",
+    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+      return $data.form.newPassword = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.newPassword]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    "class": "\n                    w-2/3\n                    border-0 border-b-2\n                    focus:outline-none\n                    focus:ring-0\n                    p-0\n                ",
+    name: "confirm_password",
+    id: "confirm_password",
+    type: "password",
+    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
+      return $data.form.confirmPassword = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.confirmPassword]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+    "class": "\n                bg-blue-primary\n                text-white\n                rounded-xl\n                focus:outline-none\n                focus:ring-0\n                border-0\n                px-4\n                ml-4\n            ",
+    onClick: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+      return $options.updatePassword && $options.updatePassword.apply($options, arguments);
+    }, ["prevent"]))
+  }, " Modifier le mot de passe ")]);
 }
 
 /***/ }),
@@ -20359,31 +20537,30 @@ var _hoisted_1 = {
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
   "class": "text-xl w-1/5 text-left",
-  "for": "first_name"
-}, "Prénom", -1
-/* HOISTED */
-);
-
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-  "class": "\n                    bg-blue-primary\n                    text-white\n                    rounded-xl\n                    focus:outline-none\n                    focus:ring-0\n                    border-0\n                    px-4\n                "
-}, " Modifier ", -1
-/* HOISTED */
-);
-
-var _hoisted_4 = {
-  "class": "flex justify-evenly w-full p-4"
-};
-
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
-  "class": "text-xl w-1/5 text-left",
   "for": "last_name"
 }, "Nom", -1
 /* HOISTED */
 );
 
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-  "class": "\n                    bg-blue-primary\n                    text-white\n                    rounded-xl\n                    focus:outline-none\n                    focus:ring-0\n                    border-0\n                    px-4\n                "
-}, " Modifier ", -1
+var _hoisted_3 = {
+  "class": "flex justify-evenly w-full p-4"
+};
+
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+  "class": "text-xl w-1/5 text-left",
+  "for": "email"
+}, "Adresse mail", -1
+/* HOISTED */
+);
+
+var _hoisted_5 = {
+  "class": "flex justify-evenly w-full p-4"
+};
+
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+  "class": "text-xl w-1/5 text-left",
+  "for": "username"
+}, "Nom d'utilisateur", -1
 /* HOISTED */
 );
 
@@ -20393,64 +20570,30 @@ var _hoisted_7 = {
 
 var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
   "class": "text-xl w-1/5 text-left",
-  "for": "email"
-}, "Adresse mail", -1
-/* HOISTED */
-);
-
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-  "class": "\n                    bg-blue-primary\n                    text-white\n                    rounded-xl\n                    focus:outline-none\n                    focus:ring-0\n                    border-0\n                    px-4\n                "
-}, " Modifier ", -1
-/* HOISTED */
-);
-
-var _hoisted_10 = {
-  "class": "flex justify-evenly w-full p-4"
-};
-
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
-  "class": "text-xl w-1/5 text-left",
-  "for": "username"
-}, "Nom d'utilisateur", -1
-/* HOISTED */
-);
-
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-  "class": "\n                    bg-blue-primary\n                    text-white\n                    rounded-xl\n                    focus:outline-none\n                    focus:ring-0\n                    border-0\n                    px-4\n                "
-}, " Modifier ", -1
-/* HOISTED */
-);
-
-var _hoisted_13 = {
-  "class": "flex justify-evenly w-full p-4"
-};
-
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
-  "class": "text-xl w-1/5 text-left",
   "for": "avatar"
 }, "Avatar", -1
 /* HOISTED */
 );
 
-var _hoisted_15 = {
+var _hoisted_9 = {
   "class": "flex justify-evenly w-full p-4"
 };
 
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
   "class": "text-xl w-1/5 text-left",
   "for": "first_name"
 }, "Aperçu", -1
 /* HOISTED */
 );
 
-var _hoisted_17 = {
+var _hoisted_11 = {
   "class": "w-2/3"
 };
-var _hoisted_18 = {
+var _hoisted_12 = {
   key: 1
 };
 
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
   "class": "p-4"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h3", {
   "class": "text-xl mb-4"
@@ -20465,44 +20608,57 @@ var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
 
 var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-    "class": "\n                    w-2/3\n                    border-0 border-b-2\n                    focus:outline-none\n                    focus:ring-0\n                    p-0\n                ",
-    name: "first_name",
-    id: "first_name",
-    type: "text",
-    value: $setup.user.name
-  }, null, 8
-  /* PROPS */
-  , ["value"]), _hoisted_3]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"flex justify-evenly w-full p-4\">\n            <label class=\"text-xl w-1/5 text-left\" for=\"first_name\"\n                >Prénom</label\n            >\n            <input\n                class=\"\n                    w-2/3\n                    border-0 border-b-2\n                    focus:outline-none\n                    focus:ring-0\n                    p-0\n                \"\n                name=\"first_name\"\n                id=\"first_name\"\n                type=\"text\"\n                :value=\"user.name\"\n            />\n            <button\n                class=\"\n                    bg-blue-primary\n                    text-white\n                    rounded-xl\n                    focus:outline-none\n                    focus:ring-0\n                    border-0\n                    px-4\n                \"\n            >\n                Modifier\n            </button>\n        </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
     "class": "\n                    w-2/3\n                    border-0 border-b-2\n                    focus:outline-none\n                    focus:ring-0\n                    p-0\n                ",
     name: "last_name",
     id: "last_name",
     type: "text",
-    value: $setup.user.name
-  }, null, 8
-  /* PROPS */
-  , ["value"]), _hoisted_6]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+      return $data.name = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.name]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+    onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+      return $options.updateName && $options.updateName.apply($options, arguments);
+    }, ["prevent"])),
+    "class": "\n                    bg-blue-primary\n                    text-white\n                    rounded-xl\n                    focus:outline-none\n                    focus:ring-0\n                    border-0\n                    px-4\n                "
+  }, " Modifier ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
     "class": "\n                    w-2/3\n                    border-0 border-b-2\n                    focus:outline-none\n                    focus:ring-0\n                    p-0\n                ",
     name: "email",
     id: "email",
     type: "email",
-    value: $setup.user.email
-  }, null, 8
-  /* PROPS */
-  , ["value"]), _hoisted_9]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
+      return $data.email = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.email]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+    onClick: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+      return $options.updateEmail && $options.updateEmail.apply($options, arguments);
+    }, ["prevent"])),
+    "class": "\n                    bg-blue-primary\n                    text-white\n                    rounded-xl\n                    focus:outline-none\n                    focus:ring-0\n                    border-0\n                    px-4\n                "
+  }, " Modifier ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
     "class": "\n                    w-2/3\n                    border-0 border-b-2\n                    focus:outline-none\n                    focus:ring-0\n                    p-0\n                ",
     name: "username",
     id: "username",
     type: "text",
-    value: $setup.user.username
-  }, null, 8
-  /* PROPS */
-  , ["value"]), _hoisted_12]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
+      return $data.username = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.username]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+    onClick: _cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+      return $options.updateUsername && $options.updateUsername.apply($options, arguments);
+    }, ["prevent"])),
+    "class": "\n                    bg-blue-primary\n                    text-white\n                    rounded-xl\n                    focus:outline-none\n                    focus:ring-0\n                    border-0\n                    px-4\n                "
+  }, " Modifier ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
     "class": "\n                    w-2/3\n                    border-0 border-b-2\n                    focus:outline-none\n                    focus:ring-0\n                    p-0\n                ",
-    onInput: _cache[1] || (_cache[1] = function ($event) {
+    onInput: _cache[7] || (_cache[7] = function ($event) {
       return $data.avatar = $event.target.files[0];
     }),
-    onChange: _cache[2] || (_cache[2] = function () {
+    onChange: _cache[8] || (_cache[8] = function () {
       return $options.onFileChange && $options.onFileChange.apply($options, arguments);
     }),
     name: "avatar",
@@ -20511,11 +20667,11 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
   }, null, 32
   /* HYDRATE_EVENTS */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-    onClick: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+    onClick: _cache[9] || (_cache[9] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $options.uploadImg && $options.uploadImg.apply($options, arguments);
     }, ["prevent"])),
     "class": "\n                    bg-blue-primary\n                    text-white\n                    rounded-xl\n                    focus:outline-none\n                    focus:ring-0\n                    border-0\n                    px-4\n                "
-  }, " Ajouter ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_17, [$data.url ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("img", {
+  }, " Ajouter ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [$data.url ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("img", {
     key: 0,
     src: $data.url,
     alt: $data.avatar.name,
@@ -20524,12 +20680,12 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
     "class": "rounded-lg"
   }, null, 8
   /* PROPS */
-  , ["src", "alt"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("p", _hoisted_18, "Aucune image sélectionnée..."))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-    onClick: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+  , ["src", "alt"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("p", _hoisted_12, "Aucune image sélectionnée..."))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+    onClick: _cache[10] || (_cache[10] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $options.uploadImg && $options.uploadImg.apply($options, arguments);
     }, ["prevent"])),
     "class": "\n                    bg-blue-primary\n                    text-white\n                    rounded-xl\n                    focus:outline-none\n                    focus:ring-0\n                    border-0\n                    px-4\n                    invisible\n                "
-  }, " Ajouter ")]), _hoisted_19]);
+  }, " Ajouter ")]), _hoisted_13]);
 });
 
 /***/ }),
@@ -20897,7 +21053,7 @@ var _hoisted_10 = {
 var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data, $options) {
   var _component_stripe_modal = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("stripe-modal");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h3", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.name), 1
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h3", _hoisted_3, "Abonnement " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.name), 1
   /* TEXT */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.content), 1
   /* TEXT */

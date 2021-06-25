@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="flex justify-evenly w-full p-4">
+        <!-- <div class="flex justify-evenly w-full p-4">
             <label class="text-xl w-1/5 text-left" for="first_name"
                 >Prénom</label
             >
@@ -30,7 +30,7 @@
             >
                 Modifier
             </button>
-        </div>
+        </div> -->
         <div class="flex justify-evenly w-full p-4">
             <label class="text-xl w-1/5 text-left" for="last_name">Nom</label>
             <input
@@ -44,9 +44,10 @@
                 name="last_name"
                 id="last_name"
                 type="text"
-                :value="user.name"
+                v-model="name"
             />
             <button
+                @click.prevent="updateName"
                 class="
                     bg-blue-primary
                     text-white
@@ -75,9 +76,10 @@
                 name="email"
                 id="email"
                 type="email"
-                :value="user.email"
+                v-model="email"
             />
             <button
+                @click.prevent="updateEmail"
                 class="
                     bg-blue-primary
                     text-white
@@ -106,9 +108,10 @@
                 name="username"
                 id="username"
                 type="text"
-                :value="user.username"
+                v-model="username"
             />
             <button
+                @click.prevent="updateUsername"
                 class="
                     bg-blue-primary
                     text-white
@@ -219,10 +222,18 @@ export default {
         const user = computed(() => usePage().props.value.auth.user);
         return { user };
     },
+    mounted() {
+        this.name = this.user.name;
+        this.email = this.user.email;
+        this.username = this.user.username;
+    },
     data() {
         return {
             avatar: null,
             url: null,
+            name: null,
+            email: null,
+            username: null,
         };
     },
     methods: {
@@ -232,6 +243,24 @@ export default {
                 avatar: this.avatar,
             });
             form.post("/upload/avatar");
+        },
+        updateName() {
+            const form = useForm({
+                name: this.name,
+            });
+            form.post("/upload/name");
+        },
+        updateUsername() {
+            const form = useForm({
+                name: this.name,
+            });
+            form.post("/upload/username");
+        },
+        updateEmail() {
+            const form = useForm({
+                email: this.email,
+            });
+            form.post("/upload/email");
         },
         onFileChange() {
             console.log("change");
