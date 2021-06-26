@@ -29,11 +29,29 @@ Route::middleware('auth:sanctum')->group(function () {
 // Posts
 Route::get('/posts', [ApiPostController::class, 'getPosts']);
 Route::get('/posts/{id}', [ApiPostController::class, 'getPost']);
+Route::post('/posts/search', [ApiPostController::class, 'search']);
 
 // Contact
 
-Route::post('/contact', function () {
-    /* request validation if error => status 422
-    envoi réussi => status 204 donc no content */
-    dd('contact');
+Route::post('/contact', function (Request $request) {
+    $request->validate([
+        "email" => 'required|email',
+        "name" => 'required|string',
+        "subject" => 'required|string',
+        "body" => 'required|string'
+    ]);
+    try {
+        Mail::send('emails.contact', ['user' => [
+            'email' => $request->email,
+            'name' => $request->name,
+            'subject' => $request->subject,
+            'body' => $request->body
+        ]], function ($m) use ($request) {
+            $m->from($request->email, $request->name);
+            $m->to(env('MAIL_TO'), 'Spotifree')->subject('Vous avez un nouveau message!');
+        });
+        return response()->json(["success" => "Mail sent!"], 200);
+    } catch (\Throwable $th) {
+        return response()->json(["error" => "Erreur lors de l'envoi du mail"], 500);
+    }
 });

@@ -24,4 +24,16 @@ class ApiPostController extends Controller
             ], 404);
         return response()->json($post, 200);
     }
+
+    public function search(Request $request)
+    {
+        $search = $request->search;
+        $posts = Post::query()
+            ->where('active', 1)
+            ->where(function ($q) use ($search) {
+                $q->where('title', 'LIKE', "%{$search}%")->orWhere('body', 'LIKE', "%{$search}%");
+            })
+            ->get();
+        return response()->json($posts, 200);
+    }
 }
