@@ -25,6 +25,7 @@ Route::post('/auth/register', [ApiTokenController::class, 'register']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/auth/me', [ApiTokenController::class, 'me']);
     Route::get('/auth/logout', [ApiTokenController::class, 'logout']);
+    Route::post('/profile/name', [ApiTokenController::class, 'changeName']);
 });
 
 // Posts

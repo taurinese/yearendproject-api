@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Auth;
 use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -100,5 +101,14 @@ class ApiTokenController extends Controller
         $request->user()->currentAccessToken()->delete();
 
         return response(null, 204);
+    }
+
+    public function changeName(Request $request)
+    {
+        $request->validate([
+            "name" => 'required|string'
+        ]);
+        dd(Auth::user());
+        return response()->json([], 200);
     }
 }
