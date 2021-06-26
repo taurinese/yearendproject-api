@@ -61,12 +61,15 @@ class ApiTokenController extends Controller
         $request->user = $user;
         app('App\Http\Controllers\CheckoutController')->freeSubscribe($request);
 
-        $token = $user->createToken($request->email, ['posts:read'])->plainTextToken;
+        $token = $user->createToken($request->email)->plainTextToken;
         return response()->json([
             'token' => $token,
             'name' => $user->name,
             'email' => $user->email,
-            'username' => $user->username
+            'username' => $user->username,
+            'avatar' => $user->url_image,
+            'isAdmin' => $user->isAdmin,
+            'subscription' => $user->subscriptions()->first()
         ]);
     }
 
