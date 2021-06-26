@@ -58,9 +58,16 @@ class ApiTokenController extends Controller
             'username' => $request->username
         ]);
 
-        $request->request->add(['user' => $user]);
+        $request->merge(['user' => $user]);
+
+        $request->setUserResolver(function () use ($user) {
+            return $user;
+        });
+        // dd($request->user());
         app('App\Http\Controllers\CheckoutController')->freeSubscribe($request);
 
+        $user = User::find($user->id);
+        // dd($user);
         $token = $user->createToken($request->email)->plainTextToken;
         return response()->json([
             'token' => $token,
