@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ApiPostController;
 use App\Http\Controllers\ApiTokenController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,25 +34,4 @@ Route::post('/posts/search', [ApiPostController::class, 'search']);
 
 // Contact
 
-Route::post('/contact', function (Request $request) {
-    $request->validate([
-        "email" => 'required|email',
-        "name" => 'required|string',
-        "subject" => 'required|string',
-        "body" => 'required|string'
-    ]);
-    try {
-        Mail::send('emails.contact', ['user' => [
-            'email' => $request->email,
-            'name' => $request->name,
-            'subject' => $request->subject,
-            'body' => $request->body
-        ]], function ($m) use ($request) {
-            $m->from($request->email, $request->name);
-            $m->to(env('MAIL_TO'), 'Spotifree')->subject('Vous avez un nouveau message!');
-        });
-        return response()->json(["success" => "Mail sent!"], 200);
-    } catch (\Throwable $th) {
-        return response()->json(["error" => "Erreur lors de l'envoi du mail"], 500);
-    }
-});
+Route::post('/contact', [ContactController::class, 'sendApi']);
