@@ -58,7 +58,7 @@ class ApiTokenController extends Controller
             'username' => $request->username
         ]);
 
-        $request->user = $user;
+        $request->request->add(['user' => $user]);
         app('App\Http\Controllers\CheckoutController')->freeSubscribe($request);
 
         $token = $user->createToken($request->email)->plainTextToken;
