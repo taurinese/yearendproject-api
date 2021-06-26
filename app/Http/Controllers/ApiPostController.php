@@ -9,7 +9,7 @@ class ApiPostController extends Controller
 {
     public function getPosts()
     {
-        $posts = Post::all();
+        $posts = Post::where('active', 1)->get();
 
         return response()->json($posts, 200);
     }
