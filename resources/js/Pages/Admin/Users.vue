@@ -19,9 +19,7 @@
                         rounded
                         shadow
                         ripple
-                        hover:shadow-lg
-                        hover:bg-blue-800
-                        hover:scale-105
+                        hover:shadow-lg hover:bg-blue-800 hover:scale-105
                         transform
                         focus:outline-none
                         mr-6
@@ -104,7 +102,7 @@
                             border-b border-grey-light
                             hover:bg-gray-100
                         "
-                        v-for="user in users"
+                        v-for="user in users.data"
                         :key="user"
                     >
                         <td class="px-3 py-4">
@@ -126,8 +124,7 @@
                                         w-4
                                         mr-2
                                         transform
-                                        hover:text-purple-500
-                                        hover:scale-110
+                                        hover:text-purple-500 hover:scale-110
                                         cursor-pointer
                                     "
                                     @click="editUser(user.id)"
@@ -151,8 +148,7 @@
                                         w-4
                                         mr-2
                                         transform
-                                        hover:text-purple-500
-                                        hover:scale-110
+                                        hover:text-purple-500 hover:scale-110
                                         cursor-pointer
                                     "
                                     @click="deleteUser(user.id)"
@@ -176,6 +172,7 @@
                     </tr>
                 </tbody>
             </table>
+            <pagination class="mt-4" :links="users.links" />
         </admin-layout>
     </div>
 </template>
@@ -183,10 +180,12 @@
 <script>
 import AdminLayout from "../../Layouts/AdminLayout.vue";
 import { useForm } from "@inertiajs/inertia-vue3";
+import Pagination from "../../Components/Pagination.vue";
 
 export default {
     components: {
         AdminLayout,
+        Pagination,
     },
     data() {
         return {};

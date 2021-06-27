@@ -32,17 +32,16 @@ Route::get('/', function () {
 Route::inertia('/search', 'Search');
 Route::inertia('/news', 'News');
 Route::inertia('/contact', 'Contact');
-Route::inertia('/new', 'New');
+Route::get('/news/{id}', [PostController::class, 'view']);
 Route::inertia('/library', 'Library');
 Route::inertia('/playlist', 'Playlist');
-Route::inertia('/checkout2', 'Checkout2');
 
 Route::post('/contact/send', [ContactController::class, 'sendmail']);
 Route::post('/search', [PostController::class, 'search']);
 
 
 Route::middleware('auth')->group(function () {
-    Route::inertia('/account', 'Account');
+    Route::inertia('/account', 'Account')->name('profile');
     Route::get('/stripe', [CheckoutController::class, 'index'])->name('checkout');
     Route::post('/checkout', [CheckoutController::class, 'store']);
     Route::post('/stripe/intent', [CheckoutController::class, 'createIntent']);

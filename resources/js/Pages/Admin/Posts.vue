@@ -19,9 +19,7 @@
                         rounded
                         shadow
                         ripple
-                        hover:shadow-lg
-                        hover:bg-blue-800
-                        hover:scale-105
+                        hover:shadow-lg hover:bg-blue-800 hover:scale-105
                         transform
                         focus:outline-none
                         mr-6
@@ -66,9 +64,7 @@
                         rounded
                         shadow
                         ripple
-                        hover:shadow-lg
-                        hover:bg-blue-800
-                        hover:scale-105
+                        hover:shadow-lg hover:bg-blue-800 hover:scale-105
                         transform
                         focus:outline-none
                         mr-6
@@ -122,8 +118,7 @@
                                 px-3
                                 text-gray-700
                                 leading-tight
-                                focus:outline-none
-                                focus:shadow-outline
+                                focus:outline-none focus:shadow-outline
                             "
                             name="title"
                             v-model="form.title"
@@ -151,8 +146,7 @@
                                 px-3
                                 text-gray-700
                                 leading-tight
-                                focus:outline-none
-                                focus:shadow-outline
+                                focus:outline-none focus:shadow-outline
                             "
                             name="published_at"
                             v-model="form.published_at"
@@ -259,8 +253,7 @@
                                 rounded
                                 text-gray-700
                                 leading-tight
-                                focus:outline-none
-                                focus:shadow-outline
+                                focus:outline-none focus:shadow-outline
                             "
                             name="active"
                             v-model="form.active"
@@ -286,9 +279,7 @@
                         rounded
                         shadow
                         ripple
-                        hover:shadow-lg
-                        hover:bg-blue-800
-                        hover:scale-105
+                        hover:shadow-lg hover:bg-blue-800 hover:scale-105
                         transform
                         focus:outline-none
                         relative
@@ -380,7 +371,7 @@
                             border-b border-grey-light
                             hover:bg-gray-100
                         "
-                        v-for="post in posts"
+                        v-for="post in posts.data"
                         :key="post"
                     >
                         <td class="px-3 py-4 text-center">
@@ -431,8 +422,7 @@
                                         w-4
                                         mr-2
                                         transform
-                                        hover:text-purple-500
-                                        hover:scale-110
+                                        hover:text-purple-500 hover:scale-110
                                         cursor-pointer
                                     "
                                     @click="editPost(post.id)"
@@ -456,8 +446,7 @@
                                         w-4
                                         mr-2
                                         transform
-                                        hover:text-purple-500
-                                        hover:scale-110
+                                        hover:text-purple-500 hover:scale-110
                                         cursor-pointer
                                     "
                                     @click="deletePost(post.id)"
@@ -481,6 +470,7 @@
                     </tr>
                 </tbody>
             </table>
+            <pagination class="mt-4" :links="posts.links" />
         </admin-layout>
     </div>
 </template>
@@ -488,6 +478,8 @@
 <script>
 import AdminLayout from "../../Layouts/AdminLayout.vue";
 import { useForm } from "@inertiajs/inertia-vue3";
+import Pagination from "../../Components/Pagination.vue";
+
 // Quill Editor
 import { QuillEditor } from "@vueup/vue-quill";
 import "@vueup/vue-quill/dist/vue-quill.snow.css";
@@ -497,6 +489,7 @@ export default {
     components: {
         AdminLayout,
         QuillEditor,
+        Pagination,
     },
     data() {
         return {

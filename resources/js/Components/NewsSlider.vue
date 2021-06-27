@@ -3,7 +3,7 @@
         <h2 class="text-xl text-white font-bold mb-16">Actualités</h2>
         <div class="flex flex-row justify-between overflow-x-scroll">
             <inertia-link
-                v-for="post in news"
+                v-for="post in news.data"
                 :key="post"
                 :href="'/news/' + post.id"
                 ><news-card

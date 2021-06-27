@@ -68,7 +68,7 @@ class CheckoutController extends Controller
                 $m->to($to, 'Spotifree')->subject('Nouvel abonnement!');
                 // $m->to($request->user()->email, 'Spotifree')->subject('Nouvel abonnement!');
             });
-            return response()->json($subscription);
+            return response()->json([$subscription, 'user' => Auth::user()]);
         } catch (\Laravel\Cashier\Exceptions\IncompletePayment $e) {
             return response()->json($e->payment);
         }

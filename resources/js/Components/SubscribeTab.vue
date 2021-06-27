@@ -1,5 +1,19 @@
 <template>
     <div>
+        <a :href="billing_url" target="_blank"
+            ><button
+                class="
+                    bg-blue-primary
+                    text-white
+                    rounded-xl
+                    focus:outline-none focus:ring-0
+                    border-0
+                    px-4
+                "
+            >
+                Modifier abonnement
+            </button></a
+        >
         <div v-if="current_subscription">
             <h3 class="text-xl font-medium mb-6">Abonnement en cours</h3>
             <subscribe-card
@@ -55,7 +69,8 @@ export default {
         const current_payment = computed(
             () => usePage().props.value.current_payment
         );
-        return { current_subscription, current_payment };
+        const billing_url = computed(() => usePage().props.value.billing_url);
+        return { current_subscription, current_payment, billing_url };
     },
     computed: {
         getPlans() {

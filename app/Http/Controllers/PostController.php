@@ -98,10 +98,16 @@ class PostController extends Controller
             ->where(function ($q) use ($search) {
                 $q->where('title', 'LIKE', "%{$search}%")->orWhere('body', 'LIKE', "%{$search}%");
             })
-            ->get();
+            ->paginate(10);
 
         // dd(count($posts), $posts);
         // Return the results
         return $posts;
+    }
+
+    public function view($id)
+    {
+        $post = Post::find($id);
+        return Inertia::render('New', ['post' => $post]);
     }
 }

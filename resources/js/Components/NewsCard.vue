@@ -16,19 +16,17 @@
                     "
                 >
                     <div class="col-span-3 row-span-4 p-1 m-1">
-                        <a href="#">
-                            <img
-                                :src="img"
-                                alt="Placeholder"
-                                class="
-                                    rounded-lg
-                                    object-contain
-                                    h-48
-                                    max-w-full
-                                    mx-auto
-                                "
-                            />
-                        </a>
+                        <img
+                            :src="img"
+                            alt="Placeholder"
+                            class="
+                                rounded-lg
+                                object-contain
+                                h-48
+                                max-w-full
+                                mx-auto
+                            "
+                        />
                     </div>
 
                     <div class="col-span-3 row-span-1">
@@ -43,7 +41,7 @@
                             "
                         >
                             <h1 class="text-lg">
-                                <a
+                                <div
                                     class="
                                         no-underline
                                         hover:underline
@@ -53,7 +51,7 @@
                                     href="#"
                                 >
                                     {{ title }}
-                                </a>
+                                </div>
                             </h1>
                         </header>
                     </div>

@@ -59,17 +59,19 @@
                             border-b border-grey-light
                             hover:bg-gray-100
                         "
-                        v-for="sub in subscriptions"
+                        v-for="sub in users.data"
                         :key="sub"
                     >
                         <td class="px-3 py-4">
-                            {{ sub.id }}
+                            <!-- {{ sub.sub.id }} -->
+                            1
                         </td>
                         <td class="px-3 py-4 text-center">
-                            {{ sub.user.username }}
+                            {{ sub.username }}
                         </td>
                         <td class="px-3 py-4 text-center">
-                            {{ sub.name }}
+                            <!-- {{ sub.sub.name }} -->
+                            1
                         </td>
                         <!-- <td class="px-3 py-4 text-center">{{ user.email }}</td>
                         <td class="px-3 py-4">
@@ -129,18 +131,21 @@
                     </tr>
                 </tbody>
             </table>
+            <pagination class="mt-4" :links="users.links" />
         </admin-layout>
     </div>
 </template>
 
 <script>
 import AdminLayout from "../../Layouts/AdminLayout.vue";
+import Pagination from "../../Components/Pagination.vue";
+
 export default {
-    components: { AdminLayout },
+    components: { AdminLayout, Pagination },
     setup() {
         return {};
     },
-    props: ["subscriptions"],
+    props: ["users"],
 };
 </script>
 

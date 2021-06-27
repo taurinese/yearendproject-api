@@ -42,28 +42,19 @@ class ApiCheckoutController extends Controller
                 ->newSubscription($plan->name, $plan->stripe_id)
                 ->withCoupon($request->coupon)
                 ->create($request->payment_method);
-            $this->sendMail($request, $plan);
+            Mail::send('emails.subscription', ['plan' => $plan, 'user' => [
+                'name' => $request->user()->name,
+                'last_four' => $request->user()->card_last_four,
+                'created_at' => $request->user()->subscriptions()->first()->created_at
+            ]], function ($m) use ($request) {
+                $m->from(env('MAIL_FROM_ADDRESS'), 'Spotifree');
+                $to = [env('MAIL_TO'), $request->user()->email];
+                $m->to($to, 'Spotifree')->subject('Nouvel abonnement!');
+                // $m->to($request->user()->email, 'Spotifree')->subject('Nouvel abonnement!');
+            });
             return response()->json([$subscription, 'user' => Auth::user()]);
         } catch (\Laravel\Cashier\Exceptions\IncompletePayment $e) {
             return response()->json($e->payment);
-        }
-    }
-
-    public function sendMail(Request $request, $data)
-    {
-        try {
-            Mail::send('emails.user_subscription', ['plan' => $data, 'user' => [
-                'name' => $request->user()->name,
-                'last_four' => $request->user()->card_last_four,
-                'created_at' => $request->user()->subscriptions()->first()
-            ]], function ($m) use ($request) {
-                $m->from(env('MAIL_FROM_ADDRESS'), 'Spotifree');
-                $m->to(env('MAIL_TO'), 'Spotifree')->subject('Nouvel abonnement!');
-                $m->to($request->user()->email, 'Spotifree')->subject('Nouvel abonnement!');
-            });
-            return true;
-        } catch (\Throwable $th) {
-            return false;
         }
     }
 }

@@ -19,6 +19,13 @@
                 v-model="name"
                 placeholder="Name"
             />
+            <input
+                type="text"
+                name="coupon"
+                id="coupon"
+                v-model="coupon"
+                placeholder="Code promo"
+            />
             <div id="card-element" class="w-full"></div>
             <button
                 @click="submit"
@@ -40,6 +47,14 @@
             "
         >
             {{ messageProcessed }}
+            <p>Prix de l'abonnement</p>
+            <p>{{ price / 100 }}€</p>
+            <p>Date de l'abonnement</p>
+            <p>{{ result[0].created_at.split("T")[0] }}</p>
+            <p>4 derniers chiffres de la CB</p>
+            <p>**** **** **** {{ result.user.card_last_four }}</p>
+            <p>Date du renouvellement</p>
+            <p>01/01/2000</p>
         </div>
     </div>
 </template>
@@ -51,14 +66,16 @@ export default {
     data() {
         return {
             name: "",
+            coupon: "",
             payment_method: "",
             payment_processing: false,
             requiresAction: false,
             paymentProcessed: false,
             messageProcessed: "",
+            result: null,
         };
     },
-    props: ["card", "stripe", "secret", "token", "id"],
+    props: ["card", "stripe", "secret", "token", "id", "price"],
     computed: {
         getClassName() {
             let className = "bg-blue-primary px-4 py-2 rounded-lg text-white";
@@ -107,6 +124,7 @@ export default {
                         }
                     )
                     .then((response) => {
+                        this.result = response.data;
                         console.log(response.data);
                         if (
                             response.data.status &&

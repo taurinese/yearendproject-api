@@ -55,6 +55,7 @@
                 :secret="secret"
                 :token="token"
                 :id="id"
+                :price="price"
             />
         </div>
     </div>
