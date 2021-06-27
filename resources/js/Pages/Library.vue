@@ -1,5 +1,5 @@
 <template>
-    <div class="px-12 sm:px-12 lg:px-36 xl:px-48 text-white">
+    <div class="px-12 sm:px-12 lg:px-36 xl:px-48 text-white mb-12">
         <app-layout />
         <h2 class="text-xl text-white font-bold mt-16 mb-8">Playlists</h2>
         <div
