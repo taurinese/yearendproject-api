@@ -33,7 +33,7 @@
         </div>
         <h2 class="text-xl text-white font-bold my-16">Contact</h2>
         <div class="grid grid-cols-1 lg:grid-cols-2 grid-flow-row gap-y-10">
-            <div
+            <!-- <div
                 class="
                     contact-image
                     col-span-1
@@ -47,7 +47,7 @@
                     alt="contact"
                     class="rounded-xl w-full h-96"
                 />
-            </div>
+            </div> -->
             <div class="col-span-1 row-span-1">
                 <h2>{{ config.city }}</h2>
                 <p>{{ config.location }}</p>

@@ -39,14 +39,16 @@
             <playlist-card />
             <playlist-card />
         </div>
+        <music-player />
     </div>
 </template>
 
 <script>
 import PlaylistCard from "../Components/PlaylistCard.vue";
 import AppLayout from "../Layouts/AppLayout.vue";
+import MusicPlayer from "../Components/MusicPlayer.vue";
 export default {
-    components: { AppLayout, PlaylistCard },
+    components: { AppLayout, PlaylistCard, MusicPlayer },
 };
 </script>
 
