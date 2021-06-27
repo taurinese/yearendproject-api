@@ -42,6 +42,10 @@ class CheckoutController extends Controller
 
         $plan = Plan::find($request->plan);
 
+        /* if ($request->user()->subscribed('gratuit')) {
+            $request->user()->subscription('gratuit')->cancelled();
+        } */
+
         try {
             $subscription = $request->user()
                 ->newSubscription($plan->name, $plan->stripe_id)

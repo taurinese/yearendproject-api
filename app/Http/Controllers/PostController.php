@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Auth;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -93,6 +94,7 @@ class PostController extends Controller
         // Search in the title and body columns from the posts table
         $posts = Post::query()
             ->where('active', 1)
+            ->where('published_at', '<', Carbon::now()->toDateString())
             ->where(function ($q) use ($search) {
                 $q->where('title', 'LIKE', "%{$search}%")->orWhere('body', 'LIKE', "%{$search}%");
             })

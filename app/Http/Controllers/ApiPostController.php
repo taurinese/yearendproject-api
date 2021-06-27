@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ApiPostController extends Controller
 {
     public function getPosts()
     {
-        $posts = Post::where('active', 1)->get();
+        $posts = Post::where('active', 1)->where('published_at', '<', Carbon::now()->toDateString())->get();
 
         return response()->json($posts, 200);
     }
@@ -30,6 +31,7 @@ class ApiPostController extends Controller
         $search = $request->search;
         $posts = Post::query()
             ->where('active', 1)
+            ->where('published_at', '<', Carbon::now()->toDateString())
             ->where(function ($q) use ($search) {
                 $q->where('title', 'LIKE', "%{$search}%")->orWhere('body', 'LIKE', "%{$search}%");
             })

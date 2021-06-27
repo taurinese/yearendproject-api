@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiCheckoutController;
 use App\Http\Controllers\ApiPostController;
 use App\Http\Controllers\ApiTokenController;
 use App\Http\Controllers\ContactController;
@@ -26,12 +27,23 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/auth/me', [ApiTokenController::class, 'me']);
     Route::get('/auth/logout', [ApiTokenController::class, 'logout']);
     Route::post('/profile/name', [ApiTokenController::class, 'changeName']);
+    Route::post('/profile/username', [ApiTokenController::class, 'changeUsername']);
+    Route::post('/profile/email', [ApiTokenController::class, 'changeEmail']);
+    Route::post('/profile/avatar', [ApiTokenController::class, 'changeAvatar']);
+    Route::post('/profile/password', [ApiTokenController::class, 'changePassword']);
+    Route::post('/stripe/intent', [ApiCheckoutController::class, 'createIntent']);
+    Route::post('/stripe/subscribe', [ApiCheckoutController::class, 'subscribe']);
 });
 
 // Posts
 Route::get('/posts', [ApiPostController::class, 'getPosts']);
 Route::get('/posts/{id}', [ApiPostController::class, 'getPost']);
 Route::post('/posts/search', [ApiPostController::class, 'search']);
+
+
+// Plans
+
+Route::get('/plans', [ApiCheckoutController::class, "getPlans"]);
 
 // Contact
 

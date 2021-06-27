@@ -12,9 +12,7 @@
                 px-4
             "
         >
-            <p class="py-4">
-                {{ content }}
-            </p>
+            <p class="py-4" v-html="content"></p>
             <p class="text-sm py-4">
                 <span class="text-base font-medium">{{ price / 100 }}€</span
                 ><span v-if="name == 'annuel'">/an</span

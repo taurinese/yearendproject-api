@@ -11,10 +11,10 @@
                 />
             </div>
             <div class="col-span-1 row-span-1">
-                <h2>Paris</h2>
-                <p>19 rue Yves Toudic, 75010, Paris</p>
-                <p>contact@ecole-webstart.com</p>
-                <p>01 42 41 97 76</p>
+                <h2>{{ config.city }}</h2>
+                <p>{{ config.location }}</p>
+                <p>{{ config.email }}</p>
+                <p>{{ config.phone }}</p>
             </div>
             <div class="col-span-1 row-span-1">
                 <iframe
@@ -41,8 +41,7 @@
                     class="
                         w-4/12
                         rounded-lg
-                        focus:outline-none
-                        focus:ring-0
+                        focus:outline-none focus:ring-0
                         border-0
                         text-black
                     "
@@ -57,8 +56,7 @@
                     class="
                         w-7/12
                         rounded-lg
-                        focus:outline-none
-                        focus:ring-0
+                        focus:outline-none focus:ring-0
                         border-0
                         text-black
                     "
@@ -76,8 +74,7 @@
                         w-full
                         border-b-2 border-black
                         rounded-t-lg
-                        focus:outline-none
-                        focus:ring-0
+                        focus:outline-none focus:ring-0
                         border-0
                         text-black
                     "
@@ -91,8 +88,7 @@
                     class="
                         w-full
                         rounded-lg
-                        focus:outline-none
-                        focus:ring-0
+                        focus:outline-none focus:ring-0
                         border-0
                         text-black
                     "
@@ -111,8 +107,7 @@
                     px-4
                     py-2
                     my-8
-                    focus:outline-none
-                    focus:ring-0
+                    focus:outline-none focus:ring-0
                     border-0
                 "
                 type="submit"
@@ -133,7 +128,8 @@ export default {
     },
     setup() {
         const user = computed(() => usePage().props.value.auth.user);
-        return { user };
+        const config = computed(() => usePage().props.value.config);
+        return { user, config };
     },
     data() {
         return {

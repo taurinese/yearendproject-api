@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Models\Plan;
 use App\Models\Post;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -40,10 +41,11 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
-            'news' => Post::where('active', true)->get(),
+            'news' => Post::where('active', true)->where('published_at', '<', Carbon::now()->toDateString())->get(),
             'current_subscription' => $request->user() ? Plan::where('name', '=', $request->user()->subscriptions()->first()->name)->first() : null,
             'current_payment' => $request->user() ? $request->user()->defaultPaymentMethod() : null,
-            'admin' => $request->user() ? $request->user()->isAdmin : null
+            'admin' => $request->user() ? $request->user()->isAdmin : null,
+            'config' => config('data')
         ]);
     }
 }
