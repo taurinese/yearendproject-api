@@ -32,7 +32,7 @@
             </button>
         </div> -->
         <div class="flex justify-evenly w-full p-4">
-            <label class="text-md lg:text-lg w-1/5 text-left" for="last_name"
+            <label class="text-md lg:text-lg w-1/5 text-left" for="name"
                 >Nom</label
             >
             <input
@@ -44,8 +44,8 @@
                     focus:outline-none focus:ring-0
                     p-0
                 "
-                name="last_name"
-                id="last_name"
+                name="name"
+                id="name"
                 type="text"
                 v-model="name"
             />

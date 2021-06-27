@@ -1,6 +1,36 @@
 <template>
     <div class="px-12 lg:px-36 xl:px-48 text-white">
         <app-layout />
+        <div
+            v-if="success.length > 0"
+            class="
+                bg-green-100
+                border border-green-400
+                text-green-700
+                px-4
+                py-3
+                rounded
+                relative
+            "
+            role="alert"
+        >
+            <span class="block sm:inline">{{ success }}</span>
+        </div>
+        <div
+            v-else-if="errors.length > 0"
+            class="
+                bg-red-100
+                border border-red-400
+                text-red-700
+                px-4
+                py-3
+                rounded
+                relative
+            "
+            role="alert"
+        >
+            <span class="block sm:inline">{{ errors }}</span>
+        </div>
         <h2 class="text-xl text-white font-bold my-16">Contact</h2>
         <div class="grid grid-cols-1 lg:grid-cols-2 grid-flow-row gap-y-10">
             <div
@@ -131,6 +161,16 @@ import AppLayout from "../Layouts/AppLayout.vue";
 import { computed } from "vue";
 import { usePage, useForm } from "@inertiajs/inertia-vue3";
 export default {
+    props: {
+        errors: {
+            type: Array,
+            default: [],
+        },
+        success: {
+            type: Array,
+            default: [],
+        },
+    },
     components: {
         AppLayout,
     },

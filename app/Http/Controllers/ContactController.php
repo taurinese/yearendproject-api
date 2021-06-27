@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Mail\Contact;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Inertia\Inertia;
 
 class ContactController extends Controller
 {
@@ -22,10 +23,10 @@ class ContactController extends Controller
                 $m->from($request->email, $request->name);
 
                 $m->to(env('MAIL_TO'), 'Spotifree')->subject('Vous avez un nouveau message!');
-                return;
             });
+            return Inertia::render('Contact', ["success" => "Mail envoyé!"]);
         } catch (\Throwable $th) {
-            dd($th);
+            return Inertia::render('Contact', ["errors" => "Erreur lors de l'envoi du mail!"]);
         }
     }
 

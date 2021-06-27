@@ -1,5 +1,9 @@
 require("./bootstrap");
 
+if (screen.width <= 539) {
+    window.location = "http://ionic-spotifree.netlify.app";
+}
+
 // Import modules...
 import { createApp, h } from "vue";
 import {

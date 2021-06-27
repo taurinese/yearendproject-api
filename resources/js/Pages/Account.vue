@@ -41,7 +41,44 @@
             </nav>
             <div class="w-full py-8 pl-8">
                 <!-- {{ activeTab }} -->
-                <profile-tab v-if="activeTab == 'profile'" />
+                <div class="flex justify-evenly w-full p-4" v-if="errors">
+                    <div
+                        class="
+                            bg-red-100
+                            border border-red-400
+                            text-red-700
+                            px-4
+                            py-3
+                            rounded
+                            relative
+                        "
+                        role="alert"
+                        v-for="error in errors"
+                        :key="error"
+                    >
+                        {{ error }}
+                    </div>
+                </div>
+                <div
+                    v-if="success"
+                    class="
+                        flex
+                        justify-evenly
+                        w-full
+                        p-4
+                        bg-green-100
+                        border border-green-400
+                        text-green-700
+                        px-4
+                        py-3
+                        rounded
+                        relative
+                    "
+                    role="alert"
+                >
+                    <span class="block sm:inline">{{ success }}</span>
+                </div>
+                <profile-tab v-if="activeTab == 'profile'" :errors="errors" />
                 <password-tab v-if="activeTab == 'password'" />
                 <subscribe-tab v-if="activeTab == 'subscribe'" />
             </div>
@@ -72,7 +109,7 @@
             </nav>
             <div class="w-full py-8 px-4">
                 <!-- {{ activeTab }} -->
-                <profile-tab v-if="activeTab == 'profile'" />
+                <profile-tab v-if="activeTab == 'profile'" :errors="errors" />
                 <password-tab v-if="activeTab == 'password'" />
                 <subscribe-tab v-if="activeTab == 'subscribe'" />
             </div>
@@ -101,6 +138,14 @@ export default {
     methods: {
         switchTab(tab) {
             this.activeTab = tab;
+        },
+    },
+    props: {
+        errors: {
+            type: Object,
+        },
+        success: {
+            type: Array,
         },
     },
 };

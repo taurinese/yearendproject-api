@@ -8,7 +8,6 @@
                 id="search-input"
                 class="
                     rounded-full
-                    w-96
                     text-md
                     focus:w-full focus:outline-none focus:ring-0
                     border-0
@@ -190,6 +189,11 @@
                 </div>
                 <pagination :links="results.links" />
             </div>
+            <div v-else-if="results.total == 0">
+                <p class="px-8 py-4 bg-white mt-12 rounded text-center">
+                    Aucune actualité trouvée.. 😔
+                </p>
+            </div>
         </transition>
     </div>
 </template>
@@ -242,6 +246,7 @@ input[type="text"] {
     left: 15px;
     bottom: 10px;
 }
+
 #search-input {
     width: 24rem;
     transition: ease-in-out width 0.75s;
@@ -256,5 +261,11 @@ input[type="text"] {
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
     opacity: 0;
+}
+
+@media (max-width: 768px) {
+    #search-input {
+        width: 18rem;
+    }
 }
 </style>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use Hash;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ProfileController extends Controller
 {
@@ -23,7 +24,9 @@ class ProfileController extends Controller
         $user->cloudinary_id = $result->getPublicId();
         $user->save();
 
-        return redirect()->back();
+        return Inertia::render('Account', [
+            "success" => "L'avatar a été modifié!"
+        ]);
     }
 
     public function updateName(Request $request)
@@ -35,7 +38,9 @@ class ProfileController extends Controller
         $user->name = $request->name;
         $user->save();
 
-        return redirect()->back();
+        return Inertia::render('Account', [
+            "success" => "Le nom a été modifié!"
+        ]);
     }
 
     public function updateUsername(Request $request)
@@ -47,7 +52,9 @@ class ProfileController extends Controller
         $user->username = $request->username;
         $user->save();
 
-        return redirect()->back();
+        return Inertia::render('Account', [
+            "success" => "Le pseudo a été modifié!"
+        ]);
     }
 
     public function updateEmail(Request $request)
@@ -59,7 +66,9 @@ class ProfileController extends Controller
         $user->email = $request->email;
         $user->save();
 
-        return redirect()->back();
+        return Inertia::render('Account', [
+            "success" => "L'email a été modifié!"
+        ]);
     }
 
 
@@ -75,7 +84,9 @@ class ProfileController extends Controller
             if ($request->newPassword == $request->confirmPassword) {
                 $user->password = Hash::make($request->newPassword);
                 $user->save();
-                return response()->json(['messages' => "Password has been successfully changed."], 200);
+                return Inertia::render('Account', [
+                    "success" => "Le mot de passe a été modifié!"
+                ]);
             } else {
                 return response()->json(['errors' => ['0' => ['0' => "New password and confirmation don't match."]]], 422);
             }

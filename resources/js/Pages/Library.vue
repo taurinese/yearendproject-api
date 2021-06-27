@@ -5,6 +5,7 @@
         <div
             class="
                 grid
+                2xl:grid-cols-6
                 xl:grid-cols-5
                 lg:grid-cols-4
                 md:grid-cols-4
@@ -23,6 +24,7 @@
         <div
             class="
                 grid
+                2xl:grid-cols-6
                 xl:grid-cols-5
                 lg:grid-cols-4
                 md:grid-cols-4
