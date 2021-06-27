@@ -83,7 +83,7 @@ export default {
     },
     methods: {
         displayStripeModal() {
-            if (this.current_payment) {
+            /* if (this.current_payment) {
                 console.log("swap");
                 axios
                     .post("/stripe/swap", {
@@ -93,7 +93,7 @@ export default {
                         console.log(response.data);
                     });
                 return;
-            }
+            } */
             this.show = true;
             this.$nextTick(function () {
                 // console.log(this.stripeKey);

@@ -22,6 +22,7 @@ class ContactController extends Controller
                 $m->from($request->email, $request->name);
 
                 $m->to(env('MAIL_TO'), 'Spotifree')->subject('Vous avez un nouveau message!');
+                return;
             });
         } catch (\Throwable $th) {
             dd($th);

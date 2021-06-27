@@ -18541,16 +18541,17 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     displayStripeModal: function displayStripeModal() {
-      if (this.current_payment) {
-        console.log("swap");
-        axios__WEBPACK_IMPORTED_MODULE_3___default().post("/stripe/swap", {
-          plan: this.id
-        }).then(function (response) {
-          console.log(response.data);
-        });
-        return;
-      }
-
+      /* if (this.current_payment) {
+          console.log("swap");
+          axios
+              .post("/stripe/swap", {
+                  plan: this.id,
+              })
+              .then((response) => {
+                  console.log(response.data);
+              });
+          return;
+      } */
       this.show = true;
       this.$nextTick(function () {
         var _this = this;

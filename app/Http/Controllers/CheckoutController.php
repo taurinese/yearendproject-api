@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Plan;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Redirect;
 
 class CheckoutController extends Controller
@@ -42,15 +43,31 @@ class CheckoutController extends Controller
 
         $plan = Plan::find($request->plan);
 
-        /* if ($request->user()->subscribed('gratuit')) {
-            $request->user()->subscription('gratuit')->cancelled();
-        } */
+        if ($request->user()->subscribed('gratuit')) {
+            $request->user()->subscription('gratuit')->cancel();
+        }
+        if ($request->user()->subscribed('mensuel')) {
+            $request->user()->subscription('mensuel')->cancel();
+        }
+        if ($request->user()->subscribed('annuel')) {
+            $request->user()->subscription('annuel')->cancel();
+        }
 
         try {
             $subscription = $request->user()
                 ->newSubscription($plan->name, $plan->stripe_id)
                 ->withCoupon($request->coupon)
                 ->create($request->payment_method);
+            Mail::send('emails.subscription', ['plan' => $plan, 'user' => [
+                'name' => $request->user()->name,
+                'last_four' => $request->user()->card_last_four,
+                'created_at' => $request->user()->subscriptions()->first()->created_at
+            ]], function ($m) use ($request) {
+                $m->from(env('MAIL_FROM_ADDRESS'), 'Spotifree');
+                $to = [env('MAIL_TO'), $request->user()->email];
+                $m->to($to, 'Spotifree')->subject('Nouvel abonnement!');
+                // $m->to($request->user()->email, 'Spotifree')->subject('Nouvel abonnement!');
+            });
             return response()->json($subscription);
         } catch (\Laravel\Cashier\Exceptions\IncompletePayment $e) {
             return response()->json($e->payment);
@@ -77,6 +94,25 @@ class CheckoutController extends Controller
             return response()->json($subscription);
         } catch (\Laravel\Cashier\Exceptions\IncompletePayment $e) {
             return response()->json($e->payment);
+        }
+    }
+
+    public function sendMail(Request $request, $data)
+    {
+        return response()->json([$request, $data]);
+        try {
+            Mail::send('emails.subscription', ['plan' => $data, 'user' => [
+                'name' => $request->user()->name,
+                'last_four' => $request->user()->card_last_four,
+                'created_at' => $request->user()->subscriptions()->first()
+            ]], function ($m) use ($request) {
+                $m->from(env('MAIL_FROM_ADDRESS'), 'Spotifree');
+                $m->to(env('MAIL_TO'), 'Spotifree')->subject('Nouvel abonnement!');
+                $m->to($request->user()->email, 'Spotifree')->subject('Nouvel abonnement!');
+            });
+            return true;
+        } catch (\Throwable $th) {
+            return $th;
         }
     }
 }
