@@ -1,5 +1,5 @@
 <template>
-    <div class="px-48">
+    <div class="pt-8 px-12 lg:px-36 xl:px-48">
         <app-layout />
         <div class="search relative mt-12">
             <input
@@ -10,9 +10,7 @@
                     rounded-full
                     w-96
                     text-md
-                    focus:w-full
-                    focus:outline-none
-                    focus:ring-0
+                    focus:w-full focus:outline-none focus:ring-0
                     border-0
                 "
                 placeholder="Rechercher un article, une chanson, un artiste..."
@@ -47,7 +45,7 @@
         <transition name="fade">
             <div v-if="!searching">
                 <news />
-                <div class="py-24">
+                <div class="py-12 lg:py-24">
                     <h2 class="text-xl text-white font-bold mb-16">
                         Parcourir
                     </h2>
@@ -176,9 +174,13 @@
             </div>
         </transition>
         <transition name="fade">
-            <div v-if="results.length > 0" class="mt-24">
-                <div v-for="result in results" :key="result">
+            <div
+                v-if="results.total && results.total >= 1"
+                class="mt-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+            >
+                <div v-for="result in results.data" :key="result">
                     <news-card
+                        class="mb-8 col-span-1 row-span-1"
                         :title="result.title"
                         :body="result.body"
                         author="Enzo"
@@ -186,6 +188,7 @@
                         :img="result.url_image"
                     />
                 </div>
+                <pagination :links="results.links" />
             </div>
         </transition>
     </div>
@@ -195,16 +198,17 @@
 import News from "../Components/NewsSlider.vue";
 import NewsCard from "../Components/NewsCard.vue";
 import AppLayout from "../Layouts/AppLayout.vue";
+import Pagination from "../Components/Pagination.vue";
 import axios from "axios";
 
 export default {
-    components: { AppLayout, News, NewsCard },
+    components: { AppLayout, News, NewsCard, Pagination },
     data() {
         return {
             search: "",
             results: [],
             searching: false,
-            focus: false
+            focus: false,
         };
     },
     methods: {

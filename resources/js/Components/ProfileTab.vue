@@ -32,13 +32,16 @@
             </button>
         </div> -->
         <div class="flex justify-evenly w-full p-4">
-            <label class="text-xl w-1/5 text-left" for="last_name">Nom</label>
+            <label class="text-md lg:text-lg w-1/5 text-left" for="last_name"
+                >Nom</label
+            >
             <input
                 class="
-                    w-2/3
+                    w-2/5
+                    lg:w-1/2
+                    xl:w-2/3
                     border-0 border-b-2
-                    focus:outline-none
-                    focus:ring-0
+                    focus:outline-none focus:ring-0
                     p-0
                 "
                 name="last_name"
@@ -49,11 +52,11 @@
             <button
                 @click.prevent="updateName"
                 class="
+                    text-sm
                     bg-blue-primary
                     text-white
                     rounded-xl
-                    focus:outline-none
-                    focus:ring-0
+                    focus:outline-none focus:ring-0
                     border-0
                     px-4
                 "
@@ -62,15 +65,16 @@
             </button>
         </div>
         <div class="flex justify-evenly w-full p-4">
-            <label class="text-xl w-1/5 text-left" for="email"
-                >Adresse mail</label
+            <label class="text-md lg:text-lg w-1/5 text-left" for="email"
+                >Email</label
             >
             <input
                 class="
-                    w-2/3
+                    w-2/5
+                    lg:w-1/2
+                    xl:w-2/3
                     border-0 border-b-2
-                    focus:outline-none
-                    focus:ring-0
+                    focus:outline-none focus:ring-0
                     p-0
                 "
                 name="email"
@@ -84,8 +88,7 @@
                     bg-blue-primary
                     text-white
                     rounded-xl
-                    focus:outline-none
-                    focus:ring-0
+                    focus:outline-none focus:ring-0
                     border-0
                     px-4
                 "
@@ -94,15 +97,16 @@
             </button>
         </div>
         <div class="flex justify-evenly w-full p-4">
-            <label class="text-xl w-1/5 text-left" for="username"
-                >Nom d'utilisateur</label
+            <label class="text-md lg:text-lg w-1/5 text-left" for="username"
+                >Username</label
             >
             <input
                 class="
-                    w-2/3
+                    w-2/5
+                    lg:w-1/2
+                    xl:w-2/3
                     border-0 border-b-2
-                    focus:outline-none
-                    focus:ring-0
+                    focus:outline-none focus:ring-0
                     p-0
                 "
                 name="username"
@@ -116,8 +120,7 @@
                     bg-blue-primary
                     text-white
                     rounded-xl
-                    focus:outline-none
-                    focus:ring-0
+                    focus:outline-none focus:ring-0
                     border-0
                     px-4
                 "
@@ -126,13 +129,16 @@
             </button>
         </div>
         <div class="flex justify-evenly w-full p-4">
-            <label class="text-xl w-1/5 text-left" for="avatar">Avatar</label>
+            <label class="text-md lg:text-xl w-1/5 text-left" for="avatar"
+                >Avatar</label
+            >
             <input
                 class="
-                    w-2/3
+                    w-2/5
+                    lg:w-1/2
+                    xl:w-2/3
                     border-0 border-b-2
-                    focus:outline-none
-                    focus:ring-0
+                    focus:outline-none focus:ring-0
                     p-0
                 "
                 @input="avatar = $event.target.files[0]"
@@ -147,8 +153,7 @@
                     bg-blue-primary
                     text-white
                     rounded-xl
-                    focus:outline-none
-                    focus:ring-0
+                    focus:outline-none focus:ring-0
                     border-0
                     px-4
                 "
@@ -157,10 +162,10 @@
             </button>
         </div>
         <div class="flex justify-evenly w-full p-4">
-            <label class="text-xl w-1/5 text-left" for="first_name"
+            <label class="text-md lg:text-xl w-1/5 text-left" for="first_name"
                 >Aperçu</label
             >
-            <div class="w-2/3">
+            <div class="w-2/5 lg:w-1/2 xl:w-2/3">
                 <img
                     v-if="url"
                     :src="url"
@@ -177,8 +182,7 @@
                     bg-blue-primary
                     text-white
                     rounded-xl
-                    focus:outline-none
-                    focus:ring-0
+                    focus:outline-none focus:ring-0
                     border-0
                     px-4
                     invisible

@@ -21,7 +21,7 @@
                 >
             </div>
         </div>
-        <div class="px-48">
+        <div class="px-12 lg:px-48">
             <news />
             <songs title="Nouvelles sorties" />
             <songs class="pb-24" title="Populaires" />
@@ -89,6 +89,33 @@ div.welcome {
             }
             &:hover {
                 background-color: darken(#25374a, 5%);
+            }
+        }
+    }
+}
+
+@media (min-width: 440px) {
+    .circles {
+        .circle {
+            width: 300px;
+            height: 300px;
+        }
+    }
+    div.welcome {
+        margin-left: 0;
+        width: 100vw;
+        .welcome-content {
+            display: flex;
+            flex-flow: column;
+            justify-content: space-evenly;
+            align-items: center;
+            height: 100%;
+            h2 {
+                font-size: 24px;
+            }
+            #btn-welcome-signup {
+                margin: 0 auto;
+                transform: none;
             }
         }
     }

@@ -1,19 +1,21 @@
 <template>
     <div>
-        <a :href="billing_url" target="_blank"
-            ><button
-                class="
-                    bg-blue-primary
-                    text-white
-                    rounded-xl
-                    focus:outline-none focus:ring-0
-                    border-0
-                    px-4
-                "
+        <div class="w-full flex justify-center items-center">
+            <a :href="billing_url" target="_blank"
+                ><button
+                    class="
+                        bg-blue-primary
+                        text-white
+                        rounded-xl
+                        focus:outline-none focus:ring-0
+                        border-0
+                        px-4
+                    "
+                >
+                    Modifier abonnement
+                </button></a
             >
-                Modifier abonnement
-            </button></a
-        >
+        </div>
         <div v-if="current_subscription">
             <h3 class="text-xl font-medium mb-6">Abonnement en cours</h3>
             <subscribe-card

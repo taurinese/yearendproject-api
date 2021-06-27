@@ -39,16 +39,18 @@
             <strong class="font-bold">Success! </strong>
             <span class="block sm:inline">{{ success }}</span>
         </div>
-        <div class="flex justify-evenly w-full p-4">
-            <label class="text-xl w-2/5 text-left" for="current_password"
+        <div class="flex justify-between w-full p-4">
+            <label
+                class="text-md lg:text-lg w-2/5 text-left"
+                for="current_password"
                 >Mot de passe actuel</label
             >
             <input
                 class="
-                    w-2/3
+                    w-2/5
+                    lg:w-2/3
                     border-0 border-b-2
-                    focus:outline-none
-                    focus:ring-0
+                    focus:outline-none focus:ring-0
                     p-0
                 "
                 name="current_password"
@@ -57,16 +59,16 @@
                 v-model="form.currentPassword"
             />
         </div>
-        <div class="flex justify-evenly w-full p-4">
-            <label class="text-xl w-2/5 text-left" for="new_password"
+        <div class="flex justify-between w-full p-4">
+            <label class="text-md lg:text-lg w-2/5 text-left" for="new_password"
                 >Nouveau mot de passe</label
             >
             <input
                 class="
-                    w-2/3
+                    w-2/5
+                    lg:w-2/3
                     border-0 border-b-2
-                    focus:outline-none
-                    focus:ring-0
+                    focus:outline-none focus:ring-0
                     p-0
                 "
                 name="new_password"
@@ -75,16 +77,18 @@
                 v-model="form.newPassword"
             />
         </div>
-        <div class="flex justify-evenly w-full p-4">
-            <label class="text-xl w-2/5 text-left" for="confirm_password"
+        <div class="flex justify-between w-full p-4">
+            <label
+                class="text-md lg:text-lg w-2/5 text-left"
+                for="confirm_password"
                 >Répéter le nouveau mot de passe</label
             >
             <input
                 class="
-                    w-2/3
+                    w-2/5
+                    lg:w-2/3
                     border-0 border-b-2
-                    focus:outline-none
-                    focus:ring-0
+                    focus:outline-none focus:ring-0
                     p-0
                 "
                 name="confirm_password"
@@ -98,8 +102,7 @@
                 bg-blue-primary
                 text-white
                 rounded-xl
-                focus:outline-none
-                focus:ring-0
+                focus:outline-none focus:ring-0
                 border-0
                 px-4
                 ml-4

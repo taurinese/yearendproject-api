@@ -1,8 +1,17 @@
 <template>
-    <div class="px-48 mt-12">
+    <div class="px-12 lg:px-36 xl:px-48 mt-12">
         <app-layout />
         <h2 class="text-xl text-white font-bold mb-16">Actualités</h2>
-        <div class="pt-12 grid grid-cols-3 grid-flow-row gap-y-10">
+        <div
+            class="
+                pt-12
+                grid grid-cols-1
+                md:grid-cols-2
+                xl:grid-cols-3
+                grid-flow-row
+                gap-y-10
+            "
+        >
             <inertia-link
                 v-for="post in news.data"
                 :key="post"
@@ -17,7 +26,10 @@
                     class="col-span-1 row-span-1"
                 />
             </inertia-link>
-            <pagination :links="news.links" />
+            <pagination
+                class="col-span-1 row-span-1 md:col-span-2 lg:col-span-3"
+                :links="news.links"
+            />
         </div>
     </div>
 </template>

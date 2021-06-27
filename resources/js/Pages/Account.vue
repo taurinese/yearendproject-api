@@ -1,7 +1,7 @@
 <template>
-    <div class="px-48 mt-12">
+    <div class="px-12 lg:px-36 xl:px-48 mt-12">
         <h2 class="text-xl text-white font-bold my-16">Compte</h2>
-        <div class="bg-white w-full h-full rounded flex">
+        <div class="bg-white w-full h-full rounded lg:flex hidden">
             <nav>
                 <div
                     class="
@@ -40,6 +40,37 @@
                 </div>
             </nav>
             <div class="w-full py-8 pl-8">
+                <!-- {{ activeTab }} -->
+                <profile-tab v-if="activeTab == 'profile'" />
+                <password-tab v-if="activeTab == 'password'" />
+                <subscribe-tab v-if="activeTab == 'subscribe'" />
+            </div>
+        </div>
+        <div class="bg-white w-full h-full rounded flex flex-col lg:hidden">
+            <nav class="w-full flex justify-evenly border-b-2 border-gray-500">
+                <div
+                    class="text-xl py-4 pr-4 ml-4 cursor-pointer"
+                    :class="{ 'text-blue-300': activeTab == 'profile' }"
+                    @click="switchTab('profile')"
+                >
+                    Mon profil
+                </div>
+                <div
+                    class="text-xl py-4 pr-4 ml-4 cursor-pointer"
+                    :class="{ 'text-blue-300': activeTab == 'password' }"
+                    @click="switchTab('password')"
+                >
+                    Mot de passe
+                </div>
+                <div
+                    class="text-xl py-4 pr-4 ml-4 cursor-pointer"
+                    :class="{ 'text-blue-300': activeTab == 'subscribe' }"
+                    @click="switchTab('subscribe')"
+                >
+                    Abonnements
+                </div>
+            </nav>
+            <div class="w-full py-8 px-4">
                 <!-- {{ activeTab }} -->
                 <profile-tab v-if="activeTab == 'profile'" />
                 <password-tab v-if="activeTab == 'password'" />

@@ -1,9 +1,17 @@
 <template>
-    <div class="px-48 text-white">
+    <div class="px-12 lg:px-36 xl:px-48 text-white">
         <app-layout />
         <h2 class="text-xl text-white font-bold my-16">Contact</h2>
-        <div class="grid grid-cols-2 grid-flow-row gap-y-10">
-            <div class="contact-image col-span-2 row-span-1">
+        <div class="grid grid-cols-1 lg:grid-cols-2 grid-flow-row gap-y-10">
+            <div
+                class="
+                    contact-image
+                    col-span-1
+                    md:col-span-2
+                    lg:col-span-2
+                    row-span-1
+                "
+            >
                 <img
                     src="https://picsum.photos/640/400/?random"
                     alt="contact"
@@ -16,7 +24,7 @@
                 <p>{{ config.email }}</p>
                 <p>{{ config.phone }}</p>
             </div>
-            <div class="col-span-1 row-span-1">
+            <div class="col-span-1 row-span-1 lg:flex lg:justify-end">
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d2624.35245957368!2d2.3625182656748254!3d48.8705571292887!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1swebstart%20paris!5e0!3m2!1sfr!2sfr!4v1621329510848!5m2!1sfr!2sfr"
                     width="400"

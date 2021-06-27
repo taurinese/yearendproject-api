@@ -1,13 +1,13 @@
 <template>
-    <div class="px-48 mt-12">
+    <div class="px-12 lg:px-36 xl:px-48 mt-16 md:mt-24 lg:mt-16">
         <app-layout />
         <h2 class="text-xl text-white font-bold">{{ post.title }}</h2>
         <div class="pt-12 flex flex-col justify-center">
             <div class="mt-12">
                 <img
-                    src="https://picsum.photos/640/400/?random"
+                    :src="post.url_image"
                     alt="contact"
-                    class="rounded-xl w-2/3 h-96 mx-auto"
+                    class="rounded-xl w-2/3 mx-auto"
                 />
             </div>
             <div class="mt-12">
@@ -34,7 +34,7 @@ import AppLayout from "../Layouts/AppLayout.vue";
 
 export default {
     components: { AppLayout },
-    prop: ["post"],
+    props: ["post"],
     computed: {
         getDate() {
             let date = new Date(this.post.created_at);
@@ -48,6 +48,9 @@ export default {
                 date.getFullYear();
             return date;
         },
+    },
+    mounted() {
+        console.log(this.post);
     },
 };
 </script>

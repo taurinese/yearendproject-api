@@ -1,5 +1,5 @@
 <template>
-    <div class="w-3/4 card mr-4 border-2 border-black rounded-lg relative">
+    <div class="w-3/4 card mx-auto border-2 border-black rounded-lg relative">
         <div class="bg-blue-primary h-1/2 rounded-t-lg">
             <h3 class="pl-4 pt-4 text-white text-2xl">Abonnement {{ name }}</h3>
         </div>
@@ -130,7 +130,7 @@ export default {
 
 <style lang="scss" scoped>
 .card {
-    height: 250px;
+    height: 300px;
 }
 button {
     transform: translate(-50%, -50%);
@@ -139,5 +139,10 @@ button {
     transform: translate(-50%, -50%);
     z-index: 2000;
     background-color: white;
+}
+@media (min-width: 750px) {
+    .card {
+        height: 250px;
+    }
 }
 </style>

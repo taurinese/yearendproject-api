@@ -22,18 +22,13 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
-Route::inertia('/search', 'Search');
-Route::inertia('/news', 'News');
-Route::inertia('/contact', 'Contact');
+    return Inertia::render('Welcome');
+})->name('Home');
+Route::inertia('/search', 'Search')->name('Search');
+Route::inertia('/news', 'News')->name('News');
+Route::inertia('/contact', 'Contact')->name('Contact');
 Route::get('/news/{id}', [PostController::class, 'view']);
-Route::inertia('/library', 'Library');
+Route::inertia('/library', 'Library')->name('Library');
 Route::inertia('/playlist', 'Playlist');
 
 Route::post('/contact/send', [ContactController::class, 'sendmail']);
