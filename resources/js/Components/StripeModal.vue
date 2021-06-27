@@ -54,13 +54,16 @@
             <p>4 derniers chiffres de la CB</p>
             <p>**** **** **** {{ result.user.card_last_four }}</p>
             <p>Date du renouvellement</p>
-            <p>01/01/2000</p>
+            <p>
+                {{ getDate }}
+            </p>
         </div>
     </div>
 </template>
 
 <script>
 import axios from "axios";
+import moment from "moment";
 export default {
     name: "StripeCheckout",
     data() {
@@ -84,6 +87,26 @@ export default {
                     "bg-gray-500 px-4 py-2 rounded-lg text-dark cursor-not-allowed";
             }
             return className;
+        },
+        getDate() {
+            let plan = this.result[0].name;
+            let currentDate = moment(this.result[0].created_at);
+            let futureMonth;
+            if (plan == "mensuel") {
+                futureMonth = moment(currentDate).add(1, "M");
+                let futureMonthEnd = moment(futureMonth).endOf("month");
+
+                if (
+                    currentDate.date() != futureMonth.date() &&
+                    futureMonth.isSame(futureMonthEnd.format("YYYY-MM-DD"))
+                ) {
+                    futureMonth = futureMonth.add(1, "d");
+                }
+            } else if (plan == "annuel") {
+                futureMonth = moment(currentDate).add(1, "Y");
+            }
+            // let date = moment(futureMonth).split("T")[0];
+            return futureMonth;
         },
     },
     methods: {
