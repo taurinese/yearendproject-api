@@ -18667,13 +18667,9 @@ __webpack_require__.r(__webpack_exports__);
     var current_subscription = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
       return (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.usePage)().props.value.current_subscription;
     });
-    var current_payment = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
-      return (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.usePage)().props.value.current_payment;
-    });
     return {
       stripeKey: stripeKey,
-      current_subscription: current_subscription,
-      current_payment: current_payment
+      current_subscription: current_subscription
     };
   }
 });
@@ -18713,7 +18709,6 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    console.log(this.current_payment);
     axios__WEBPACK_IMPORTED_MODULE_1___default().get("/stripe").then(function (response) {
       _this.plans = response.data; // console.log(this.plans);
     });
@@ -18722,15 +18717,11 @@ __webpack_require__.r(__webpack_exports__);
     var current_subscription = (0,vue__WEBPACK_IMPORTED_MODULE_2__.computed)(function () {
       return (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_3__.usePage)().props.value.current_subscription;
     });
-    var current_payment = (0,vue__WEBPACK_IMPORTED_MODULE_2__.computed)(function () {
-      return (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_3__.usePage)().props.value.current_payment;
-    });
     var billing_url = (0,vue__WEBPACK_IMPORTED_MODULE_2__.computed)(function () {
       return (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_3__.usePage)().props.value.billing_url;
     });
     return {
       current_subscription: current_subscription,
-      current_payment: current_payment,
       billing_url: billing_url
     };
   },
@@ -20532,12 +20523,19 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
   /* PROPS */
   , ["src"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("header", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.title), 1
   /* TEXT */
-  )])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
+  )])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [$props.body.length <= 20 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("p", {
+    key: 0,
     "class": "text-base text-left pt-0 md:pt-0 p-2 md:p-4",
     innerHTML: $props.body
   }, null, 8
   /* PROPS */
-  , ["innerHTML"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", _hoisted_10, " par " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.author) + " le " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.datetime), 1
+  , ["innerHTML"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("p", {
+    key: 1,
+    "class": "text-base text-left pt-0 md:pt-0 p-2 md:p-4",
+    innerHTML: $props.body.substring(0, 20) + '..'
+  }, null, 8
+  /* PROPS */
+  , ["innerHTML"]))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", _hoisted_10, " par " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.author) + " le " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.datetime), 1
   /* TEXT */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("ul", _hoisted_12, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.hashtags, function (hashtag) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("li", {
@@ -23415,23 +23413,15 @@ var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
 var _hoisted_3 = {
   "class": "bg-white"
 };
-
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
+var _hoisted_4 = {
   "class": "px-3 py-4"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" {{ sub.sub.id }} "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 1 ")], -1
-/* HOISTED */
-);
-
+};
 var _hoisted_5 = {
   "class": "px-3 py-4 text-center"
 };
-
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
+var _hoisted_6 = {
   "class": "px-3 py-4 text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" {{ sub.sub.name }} "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 1 ")], -1
-/* HOISTED */
-);
-
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_pagination = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("pagination");
 
@@ -23443,9 +23433,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("tr", {
           "class": "\n                            accordion\n                            border-b border-grey-light\n                            hover:bg-gray-100\n                        ",
           key: sub
-        }, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(sub.username), 1
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(sub.sub.id), 1
         /* TEXT */
-        ), _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <td class=\"px-3 py-4 text-center\">{{ user.email }}</td>\n                        <td class=\"px-3 py-4\">\n                            <div class=\"flex item-center justify-center\">\n                                <div\n                                    class=\"\n                                        w-4\n                                        mr-2\n                                        transform\n                                        hover:text-purple-500\n                                        hover:scale-110\n                                        cursor-pointer\n                                    \"\n                                    @click=\"editUser(user.id)\"\n                                >\n                                    <svg\n                                        xmlns=\"http://www.w3.org/2000/svg\"\n                                        fill=\"none\"\n                                        viewBox=\"0 0 24 24\"\n                                        stroke=\"currentColor\"\n                                    >\n                                        <path\n                                            stroke-linecap=\"round\"\n                                            stroke-linejoin=\"round\"\n                                            stroke-width=\"2\"\n                                            d=\"M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z\"\n                                        />\n                                    </svg>\n                                </div>\n                                <div\n                                    class=\"\n                                        w-4\n                                        mr-2\n                                        transform\n                                        hover:text-purple-500\n                                        hover:scale-110\n                                        cursor-pointer\n                                    \"\n                                    @click=\"deleteUser(user.id)\"\n                                >\n                                    <svg\n                                        xmlns=\"http://www.w3.org/2000/svg\"\n                                        fill=\"none\"\n                                        viewBox=\"0 0 24 24\"\n                                        stroke=\"currentColor\"\n                                    >\n                                        <path\n                                            stroke-linecap=\"round\"\n                                            stroke-linejoin=\"round\"\n                                            stroke-width=\"2\"\n                                            d=\"M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16\"\n                                        />\n                                    </svg>\n                                </div>\n                            </div>\n                        </td> ")]);
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 1 ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(sub.username), 1
+        /* TEXT */
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(sub.sub.name), 1
+        /* TEXT */
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 1 ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <td class=\"px-3 py-4 text-center\">{{ user.email }}</td>\n                        <td class=\"px-3 py-4\">\n                            <div class=\"flex item-center justify-center\">\n                                <div\n                                    class=\"\n                                        w-4\n                                        mr-2\n                                        transform\n                                        hover:text-purple-500\n                                        hover:scale-110\n                                        cursor-pointer\n                                    \"\n                                    @click=\"editUser(user.id)\"\n                                >\n                                    <svg\n                                        xmlns=\"http://www.w3.org/2000/svg\"\n                                        fill=\"none\"\n                                        viewBox=\"0 0 24 24\"\n                                        stroke=\"currentColor\"\n                                    >\n                                        <path\n                                            stroke-linecap=\"round\"\n                                            stroke-linejoin=\"round\"\n                                            stroke-width=\"2\"\n                                            d=\"M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z\"\n                                        />\n                                    </svg>\n                                </div>\n                                <div\n                                    class=\"\n                                        w-4\n                                        mr-2\n                                        transform\n                                        hover:text-purple-500\n                                        hover:scale-110\n                                        cursor-pointer\n                                    \"\n                                    @click=\"deleteUser(user.id)\"\n                                >\n                                    <svg\n                                        xmlns=\"http://www.w3.org/2000/svg\"\n                                        fill=\"none\"\n                                        viewBox=\"0 0 24 24\"\n                                        stroke=\"currentColor\"\n                                    >\n                                        <path\n                                            stroke-linecap=\"round\"\n                                            stroke-linejoin=\"round\"\n                                            stroke-width=\"2\"\n                                            d=\"M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16\"\n                                        />\n                                    </svg>\n                                </div>\n                            </div>\n                        </td> ")]);
       }), 128
       /* KEYED_FRAGMENT */
       ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_pagination, {

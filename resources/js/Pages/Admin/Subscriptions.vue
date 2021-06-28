@@ -63,15 +63,15 @@
                         :key="sub"
                     >
                         <td class="px-3 py-4">
-                            <!-- {{ sub.sub.id }} -->
-                            1
+                            {{ sub.sub.id }}
+                            <!-- 1 -->
                         </td>
                         <td class="px-3 py-4 text-center">
                             {{ sub.username }}
                         </td>
                         <td class="px-3 py-4 text-center">
-                            <!-- {{ sub.sub.name }} -->
-                            1
+                            {{ sub.sub.name }}
+                            <!-- 1 -->
                         </td>
                         <!-- <td class="px-3 py-4 text-center">{{ user.email }}</td>
                         <td class="px-3 py-4">

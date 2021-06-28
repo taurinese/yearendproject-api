@@ -59,6 +59,12 @@
                         <p
                             class="text-base text-left pt-0 md:pt-0 p-2 md:p-4"
                             v-html="body"
+                            v-if="body.length <= 20"
+                        ></p>
+                        <p
+                            class="text-base text-left pt-0 md:pt-0 p-2 md:p-4"
+                            v-html="body.substring(0, 20) + '..'"
+                            v-else
                         ></p>
                     </div>
                     <div class="col-span-3 row-span-1">

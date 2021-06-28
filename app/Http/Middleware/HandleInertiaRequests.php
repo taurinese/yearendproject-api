@@ -43,7 +43,7 @@ class HandleInertiaRequests extends Middleware
             ],
             'news' => Post::where('active', true)->where('published_at', '<=', Carbon::now()->toDateString())->orderBy('published_at', 'DESC')->paginate(6),
             'current_subscription' => $request->user() ? Plan::where('name', '=', $request->user()->subscriptions()->first()->name)->first() : null,
-            'current_payment' => $request->user() ? $request->user()->defaultPaymentMethod() : null,
+            // 'current_payment' => $request->user() ? $request->user()->defaultPaymentMethod() : null,
             'admin' => $request->user() ? $request->user()->isAdmin : null,
             'config' => config('data'),
             'billing_url' => $request->user() ? $request->user()->billingPortalUrl(route('profile')) : ''
